@@ -6,23 +6,23 @@ NAME		=   push_swap
 
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror -I $(INCLUDE) -I $(LIBFT)include
-INCLUDE 	=	includes
+INCLUDE 	=	.
 
 #			PUSH_SWAP
 
-SRC_FILES	=	client
-SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(CSRC_FILES)))
-OBJ 		= 	$(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(CSRC_FILES)))
+SRC_FILES	=	push_swap \
+				parse
+SRC 		= 	$(addsuffix .c, $(SRC_FILES))
+OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 #			COMMON
 
-SRC_DIR		=	src
-OBJ_DIR		=	$(SRC_DIR)/obj
+OBJ_DIR		=	obj/
 
 #			LIBFT
 
 LIBFT		=	libft_ex
-LIBFT_A		=	$(LIBFT)libft_ex.a
+LIBFT_A		=	$(LIBFT)/libft_ex.a
 
 #			RULES
 
@@ -37,7 +37,7 @@ $(LIBFT_A)		:
 $(OBJ_DIR)		:
 				mkdir $(OBJ_DIR)
 
-$(OBJ_DIR)%.o	: 	$(SRC_DIR)%.c push_swap.h
+$(OBJ_DIR)%.o	: 	%.c push_swap.h
 				$(CC) $(CFLAGS) -c $< -o $@
 
 clean			:
