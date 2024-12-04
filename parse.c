@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 19:26:49 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/03 19:26:56 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/04 17:45:52 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	*parse_args(int argc, char **argv)
 
 	stack = malloc(sizeof(int) * (argc - 1));
 	if (!stack)
-		return (NULL);
+		error();
 	i = 0;
 	while (i < argc - 1)
 	{
-		if (verify_arg(argv[i + 1]))
+		if (verify_arg(argv[i + 1], stack, i))
 		{
 			free(stack);
-			return (NULL);
+			error();
 		}
 		stack[i] = ft_atoi(argv[i + 1]);
 		i++;
@@ -34,7 +34,7 @@ int	*parse_args(int argc, char **argv)
 	return (stack);
 }
 
-int	verify_arg(char *arg)
+int	verify_arg(char *arg, int *stack, int size)
 {
 	int	i;
 
@@ -42,6 +42,15 @@ int	verify_arg(char *arg)
 	while (arg[i])
 	{
 		if (!ft_isdigit(arg[i]) && arg[i] != '-')
+			return (1);
+		i++;
+	}
+	if (ft_atol(arg) > INT_MAX || ft_atol(arg) < INT_MIN)
+		return (1);
+	i = 0;
+	while (i < size)
+	{
+		if (stack[i] == ft_atoi(arg))
 			return (1);
 		i++;
 	}

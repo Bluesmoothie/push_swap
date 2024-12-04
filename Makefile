@@ -5,13 +5,14 @@ NAME		=   push_swap
 #			GCC
 
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -I $(INCLUDE) -I $(LIBFT)include
+CFLAGS		=	-ggdb -Wall -Wextra -Werror -I $(INCLUDE) -I $(LIBFT)include
 INCLUDE 	=	.
 
 #			PUSH_SWAP
 
-SRC_FILES	=	push_swap \
-				parse
+SRC_FILES	=	push_swap 	\
+				parse		\
+				ft_atol
 SRC 		= 	$(addsuffix .c, $(SRC_FILES))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 

@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 18:17:13 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/04 17:32:37 by ygille           ###   ########.fr       */
+/*   Created: 2024/12/04 17:41:57 by ygille            #+#    #+#             */
+/*   Updated: 2024/12/04 17:43:36 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+long	ft_atol(const char *nptr)
 {
-	int	*stack;
-	int i;
-	//int	*sorted;
+	size_t	i;
+	long	num;
+	int		sign;
 
-	if (argc < 2)
-		return (1);
-	stack = parse_args(argc, argv);
 	i = 0;
-	while (i < argc - 1)
+	num = 0;
+	sign = 1;
+	while ((nptr[i] >= '\t' && nptr[i] <= '\r') || nptr[i] == ' ')
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		ft_printf("%d\n", stack[i]);
+		if (nptr[i] == '-')
+			sign *= -1;
 		i++;
 	}
-	return (0);
-}
-
-void	error(void)
-{
-	ft_putstr_fd("Error\n", 2);
-	exit(1);
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		num *= 10;
+		num += nptr[i] - 48;
+		i++;
+	}
+	return (num * sign);
 }
