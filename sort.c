@@ -1,38 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 18:17:13 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/04 18:05:22 by ygille           ###   ########.fr       */
+/*   Created: 2024/12/04 17:59:05 by ygille            #+#    #+#             */
+/*   Updated: 2024/12/04 18:05:55 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+int	*sort(int *stack, int size)
 {
-	int	*stack;
-	int i;
 	int	*sorted;
+	int	i;
+	int	tmp;
 
-	if (argc < 2)
-		return (1);
-	stack = parse_args(argc, argv);
-	sorted = sort(stack, argc - 1);
+	sorted = dup_stack(stack, size);
 	i = 0;
-	while (i < argc - 1)
+	while (i < size - 1)
 	{
-		ft_printf("%d    %d\n", stack[i], sorted[i]);
-		i++;
+		if (sorted[i] > sorted[i + 1])
+		{
+			tmp = sorted[i];
+			sorted[i] = sorted[i + 1];
+			sorted[i + 1] = tmp;
+			i = 0;
+		}
+		else
+			i++;
 	}
-	return (0);
+	return (sorted);
 }
 
-void	error(void)
+int	*dup_stack(int *stack, int size)
 {
-	ft_putstr_fd("Error\n", 2);
-	exit(1);
+	int	*dup;
+	int	i;
+
+	dup = malloc(sizeof(int) * size);
+	if (!dup)
+		error();
+	i = 0;
+	while (i < size)
+	{
+		dup[i] = stack[i];
+		i++;
+	}
+	return (dup);
 }

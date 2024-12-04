@@ -12,7 +12,8 @@ INCLUDE 	=	.
 
 SRC_FILES	=	push_swap 	\
 				parse		\
-				ft_atol
+				ft_atol		\
+				sort
 SRC 		= 	$(addsuffix .c, $(SRC_FILES))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
