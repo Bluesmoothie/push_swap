@@ -1,53 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   instructions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 17:59:05 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/05 12:12:44 by ygille           ###   ########.fr       */
+/*   Created: 2024/12/05 11:40:48 by ygille            #+#    #+#             */
+/*   Updated: 2024/12/05 12:43:14 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*sort(int *stack, int size)
+void	pa(int *a, int *b, int *minp_a, int *minp_b)
 {
-	int	*sorted;
+	*a = *b;
+	*b = 0;
+	(*minp_a)--;
+	(*minp_b)++;
+	ft_printf("pa\n");
+}
+
+void	pb(int *a, int *b, int *minp_a, int *minp_b)
+{
+	*b = *a;
+	*a = 0;
+	(*minp_a)++;
+	(*minp_b)--;
+	ft_printf("pb\n");
+}
+
+void	ra(int *stack_a, int minp_a, int max_pos)
+{
 	int	i;
 	int	tmp;
 
-	sorted = dup_stack(stack, size);
 	i = 0;
-	while (i < size - 1)
+	tmp = stack_a[minp_a];
+	while (i < max_pos - minp_a)
 	{
-		if (sorted[i] < sorted[i + 1])
-		{
-			tmp = sorted[i];
-			sorted[i] = sorted[i + 1];
-			sorted[i + 1] = tmp;
-			i = 0;
-		}
-		else
-			i++;
-	}
-	return (sorted);
-}
-
-int	*dup_stack(int *stack, int size)
-{
-	int	*dup;
-	int	i;
-
-	dup = malloc(sizeof(int) * size);
-	if (!dup)
-		error();
-	i = 0;
-	while (i < size)
-	{
-		dup[i] = stack[i];
+		stack_a[minp_a + i] = stack_a[minp_a + i + 1];
 		i++;
 	}
-	return (dup);
+	stack_a[max_pos] = tmp;
+	ft_printf("ra\n");
 }

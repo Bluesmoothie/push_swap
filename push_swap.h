@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/04 18:03:51 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/05 12:43:29 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,13 @@ long	ft_atol(const char *nptr);
 //sort.c
 int		*sort(int *stack, int size);
 int		*dup_stack(int *stack, int size);
+
+//processing.c
+void	process(int *stack_a, int *stack_b, int *sorted, int max_pos);
+
+//instructions.c
+void	pa(int *a, int *b, int *minp_a, int *minp_b);
+void	pb(int *a, int *b, int *minp_a, int *minp_b);
+void	ra(int *stack_a, int minp_a, int max_pos);
 
 #endif
