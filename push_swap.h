@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/05 17:06:49 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/05 18:33:52 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ void	pa(int *a, int *b, int *minp_a, int *minp_b);
 void	pb(int *a, int *b, int *minp_a, int *minp_b);
 void	ra(int *stack_a, int minp_a, int max_pos);
 void	rra(int *stack_a, int minp_a, int max_pos);
+void	sa(int *stack_a, int minp_a);
 
 #endif
