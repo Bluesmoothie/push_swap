@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/05 12:43:29 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/05 13:16:15 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	error(void);
 //parse.c
 int		*parse_args(int argc, char **argv);
 int		verify_arg(char *arg, int *stack, int size);
+int		*alt_parse_args(char *arg);
+int		*fill_stack(char **split, int size);
 
 //ft_atol.c
 long	ft_atol(const char *nptr);

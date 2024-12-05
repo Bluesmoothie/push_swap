@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 19:26:49 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/04 17:45:52 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/05 13:21:06 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,48 @@ int	verify_arg(char *arg, int *stack, int size)
 		i++;
 	}
 	return (0);
+}
+
+int	*alt_parse_args(char *arg)
+{
+	char	**split;
+	int		*stack;
+	int		i;
+
+	split = ft_split(arg, ' ');
+	if (!split)
+		error();
+	i = 0;
+	while (split[i])
+		i++;
+	stack = fill_stack(split, i);
+	if (!stack)
+	{
+		free(split);
+		error();
+	}
+	free(split);
+	return (stack);
+}
+
+int	*fill_stack(char **split, int size)
+{
+	int *stack;
+	int i;
+
+	stack = malloc(sizeof(int) * size);
+	if (!stack)
+		return (NULL);
+	i = 0;
+	while (i < size - 1)
+	{
+		if (verify_arg(split[i], stack, i))
+		{
+			free(stack);
+			return (NULL);
+		}
+		stack[i] = ft_atoi(split[i]);
+		free(split[i]);
+	}
+	return (stack);
 }
