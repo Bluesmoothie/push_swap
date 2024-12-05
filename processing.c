@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:38:51 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/05 12:46:29 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/05 15:13:24 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,18 @@ void	process(int *stack_a, int *stack_b, int *sorted, int max_pos)
 	}
 	while (minp_b <= max_pos)
 		pa(&stack_a[minp_a - 1], &stack_b[minp_b], &minp_a, &minp_b);
+}
+
+int	is_sorted(int *stack, int *sorted, int max_pos)
+{
+	int	i;
+
+	i = 0;
+	while (i <= max_pos)
+	{
+		if (stack[i] != sorted[max_pos - i])
+			return (0);
+		i++;
+	}
+	return (1);
 }

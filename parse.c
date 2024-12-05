@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 19:26:49 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/05 13:21:06 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/05 15:19:09 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	verify_arg(char *arg, int *stack, int size)
 	return (0);
 }
 
-int	*alt_parse_args(char *arg)
+int	*alt_parse_args(int	*argc, char *arg)
 {
 	char	**split;
 	int		*stack;
@@ -76,6 +76,7 @@ int	*alt_parse_args(char *arg)
 		error();
 	}
 	free(split);
+	*argc = i + 1;
 	return (stack);
 }
 
@@ -88,7 +89,7 @@ int	*fill_stack(char **split, int size)
 	if (!stack)
 		return (NULL);
 	i = 0;
-	while (i < size - 1)
+	while (i < size)
 	{
 		if (verify_arg(split[i], stack, i))
 		{
@@ -97,6 +98,7 @@ int	*fill_stack(char **split, int size)
 		}
 		stack[i] = ft_atoi(split[i]);
 		free(split[i]);
+		i++;
 	}
 	return (stack);
 }
