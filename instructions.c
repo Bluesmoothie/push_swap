@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:40:48 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/05 12:43:14 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/05 16:38:49 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,20 @@ void	ra(int *stack_a, int minp_a, int max_pos)
 	}
 	stack_a[max_pos] = tmp;
 	ft_printf("ra\n");
+}
+
+void	rra(int *stack_a, int minp_a, int max_pos)
+{
+	int	i;
+	int	tmp;
+
+	i = 0;
+	tmp = stack_a[max_pos];
+	while (i < max_pos - minp_a)
+	{
+		stack_a[max_pos - i] = stack_a[max_pos - i - 1];
+		i++;
+	}
+	stack_a[minp_a] = tmp;
+	ft_printf("rra\n");
 }
