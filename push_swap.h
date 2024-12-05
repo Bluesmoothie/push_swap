@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/05 18:33:52 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/05 18:49:13 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		*dup_stack(int *stack, int size);
 void	process(int *stack_a, int *stack_b, int *sorted, int max_pos);
 int		is_sorted(int *stack, int *sorted, int max_pos);
 int		basic_sort(int *stack, int max_pos);
-int		r_rr(int *stack, int max_pos, int r, int rr);
+void	r_rr(int *stack_a, int minp_a, int max_pos, int	to_find);
 
 //instructions.c
 void	pa(int *a, int *b, int *minp_a, int *minp_b);
