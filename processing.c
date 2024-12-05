@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:38:51 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/05 15:13:24 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/05 15:28:02 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	process(int *stack_a, int *stack_b, int *sorted, int max_pos)
 
 	minp_a = 0;
 	minp_b = max_pos + 1;
-	while (minp_a <= max_pos)
+	while (minp_a < max_pos)
 	{
 		if (stack_a[minp_a] == sorted[max_pos - minp_a])
 			pb(&stack_a[minp_a], &stack_b[minp_b - 1], &minp_a, &minp_b);
