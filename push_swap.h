@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/05 18:49:13 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/06 14:02:30 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,71 @@
 # include <ft_printf.h>
 # include <limits.h>
 
+typedef struct s_stack
+{
+	int	*stack;
+	int	size;
+	int	minp;
+	int	maxp;
+	int	maxval;
+	int	minval;
+}	t_stack;
+
+typedef struct s_slist
+{
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	int		*sorted;
+}	t_slist;
+
+enum e_instructions
+{
+	SA = 11,
+	SB = 12,
+	SS = 13,
+	PA = 21,
+	PB = 22,
+	RA = 31,
+	RB = 32,
+	RR = 33,
+	RRA = 41,
+	RRB = 42,
+	RRR = 43
+};
+
 //push_swap.c
-void	error(void);
+void	error(t_slist *list, int error);
+t_slist	*list_init(void);
 
 //parse.c
-int		*parse_args(int argc, char **argv);
-int		verify_arg(char *arg, int *stack, int size);
-int		*alt_parse_args(int	*argc, char *arg);
-int		*fill_stack(char **split, int size);
+t_stack	*parse_args(int argc, char **argv, t_slist *list);
+int		verify_arg(char *arg, t_stack *stack);
+t_stack	*alt_parse_args(int	*argc, char *arg, t_slist *list);
+t_stack	*fill_stack(char **split, int size, t_slist *list);
+t_stack	*init_stack(int size, t_slist *list);
 
 //ft_atol.c
 long	ft_atol(const char *nptr);
 
 //sort.c
-int		*sort(int *stack, int size);
-int		*dup_stack(int *stack, int size);
+int		*sort(t_stack *stack, t_slist *list);
+int		*dup_stack(int *stack, int size, t_slist *list);
 
 //processing.c
-void	process(int *stack_a, int *stack_b, int *sorted, int max_pos);
-int		is_sorted(int *stack, int *sorted, int max_pos);
-int		basic_sort(int *stack, int max_pos);
-void	r_rr(int *stack_a, int minp_a, int max_pos, int	to_find);
+void	process(t_slist *list);
+int		is_sorted(t_slist *list);
+void	r_or_rr(t_stack *stack, int	to_find);
+
+//instructions_decoder.c
+void	inst_decoder(int inst, t_slist *list);
+void	inst_swap_both(t_slist *list);
+void	inst_rotate_both(t_slist *list);
+void	inst_rev_rotate_both(t_slist *list);
 
 //instructions.c
-void	pa(int *a, int *b, int *minp_a, int *minp_b);
-void	pb(int *a, int *b, int *minp_a, int *minp_b);
-void	ra(int *stack_a, int minp_a, int max_pos);
-void	rra(int *stack_a, int minp_a, int max_pos);
-void	sa(int *stack_a, int minp_a);
+void	inst_swap(t_stack *stack);
+void	inst_push(t_stack *src, t_stack *dst);
+void	inst_rotate(t_stack *stack);
+void	inst_rev_rotate(t_stack *stack);
 
 #endif

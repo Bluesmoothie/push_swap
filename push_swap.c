@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:13 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/05 15:20:39 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/06 14:02:13 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,57 @@
 
 int	main(int argc, char **argv)
 {
-	int	*stack_a;
-	int	*stack_b;
-	int	*sorted;
+	t_slist	*list;
 
 	if (argc < 2)
 		return (1);
+	list = list_init();
+	if (!list)
+		error(NULL, 1);
 	if (argc > 2)
-		stack_a = parse_args(argc, argv);
+		list->stack_a = parse_args(argc, argv, list);
 	else
-		stack_a = alt_parse_args(&argc, argv[1]);
-	stack_b = malloc(sizeof(int) * (argc - 1));
-	if (!stack_b)
-		error();
-	sorted = sort(stack_a, argc - 1);
-	if (!is_sorted(stack_a, sorted, argc - 2))
-		process(stack_a, stack_b, sorted, argc - 2);
-	free(stack_a);
-	free(stack_b);
-	free(sorted);
+		list->stack_a = alt_parse_args(&argc, argv[1], list);
+	list->stack_b = init_stack(list->stack_a->size, list);
+	list->sorted = sort(list->stack_a, list);
+	if (!is_sorted(list))
+		process(list);
+	error(list, 0);
 	return (0);
 }
 
-void	error(void)
+void	error(t_slist *list, int error)
 {
-	ft_putstr_fd("Error\n", 2);
-	exit(1);
+	if (list->stack_a->stack)
+		free(list->stack_a->stack);
+	if (list->stack_b->stack)
+		free(list->stack_b->stack);
+	if (list->sorted)
+		free(list->sorted);
+	if (list->stack_a)
+		free(list->stack_a);
+	if (list->stack_b)
+		free(list->stack_b);
+	if (list)
+		free(list);
+	if (error)
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit(error);
+	}
+}
+
+t_slist	*list_init(void)
+{
+	t_slist	*list;
+
+	list = malloc(sizeof(t_slist));
+	if (!list)
+		error (NULL, 1);
+	list->stack_a = NULL;
+	list->stack_b = NULL;
+	list->sorted = NULL;
+	return (list);
 }
 
 // void	print_state(int *stack_a, int *stack_b, int *sorted, int max_pos)

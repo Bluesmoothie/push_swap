@@ -6,64 +6,73 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:38:51 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/05 18:55:38 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/06 13:55:03 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	process(int *stack_a, int *stack_b, int *sorted, int max_pos)
-{
-	int	minp_a;
-	int	minp_b;
-
-	minp_a = 0;
-	minp_b = max_pos + 1;
-	while (minp_a < max_pos)
-	{
-		if (stack_a[minp_a] == sorted[max_pos - minp_a])
-			pb(&stack_a[minp_a], &stack_b[minp_b - 1], &minp_a, &minp_b);
-		else
-			r_rr(stack_a, minp_a, max_pos, sorted[max_pos - minp_a]);
-	}
-	while (minp_b <= max_pos)
-		pa(&stack_a[minp_a - 1], &stack_b[minp_b], &minp_a, &minp_b);
-}
-
-int	is_sorted(int *stack, int *sorted, int max_pos)
+void	process(t_slist *list)
 {
 	int	i;
 
 	i = 0;
-	while (i <= max_pos)
+	while (!is_sorted(list))
 	{
-		if (stack[i] != sorted[max_pos - i])
+		if (list->stack_a->stack[list->stack_a->minp] == list->sorted[list->stack_a->maxp - i])
+		{
+			inst_push(list->stack_a, list->stack_b);
+			ft_printf("pb\n");
+		}
+		else
+		{
+			r_or_rr(list->stack_a, list->sorted[list->stack_a->maxp - i]);
+			inst_push(list->stack_a, list->stack_b);
+			ft_printf("pb\n");
+		}
+		i++;
+	}
+	while (list->stack_b->size > 0)
+	{
+		inst_push(list->stack_b, list->stack_a);
+		ft_printf("pa\n");
+	}
+}
+
+int	is_sorted(t_slist *list)
+{
+	int	i;
+
+	i = 0;
+	while (i <= list->stack_a->maxp)
+	{
+		if (list->stack_a->stack[i] != list->sorted[list->stack_a->maxp - i])
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-void	r_rr(int *stack_a, int minp_a, int max_pos, int to_find)
+void	r_or_rr(t_stack *stack, int to_find)
 {
 	int	pos;
 
-	pos = minp_a;
-	while (stack_a[pos] != to_find)
+	pos = stack->minp;
+	while (stack->stack[pos] != to_find)
 		pos++;
-	if (pos - minp_a <= max_pos - pos)
+	if (pos - stack->minp <= stack->maxp - pos)
 	{
-		while (minp_a <= pos)
+		while (stack->minp <= pos)
 		{
-			ra(stack_a, minp_a, max_pos);
+			inst_rotate(stack);
 			pos--;
 		}
 	}
 	else
 	{
-		while (pos <= max_pos)
+		while (pos <= stack->maxp)
 		{
-			rra(stack_a, minp_a, max_pos);
+			inst_rev_rotate(stack);
 			pos++;
 		}
 	}

@@ -10,12 +10,13 @@ INCLUDE 	=	.
 
 #			PUSH_SWAP
 
-SRC_FILES	=	push_swap 		\
-				parse			\
-				ft_atol			\
-				sort			\
-				instructions	\
-				processing		
+SRC_FILES	=	push_swap 				\
+				parse					\
+				ft_atol					\
+				sort					\
+				instructions			\
+				processing				\
+				instructions_decoder	
 SRC 		= 	$(addsuffix .c, $(SRC_FILES))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 

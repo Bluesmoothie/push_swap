@@ -5,69 +5,65 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 11:40:48 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/05 18:33:57 by ygille           ###   ########.fr       */
+/*   Created: 2024/12/06 13:16:38 by ygille            #+#    #+#             */
+/*   Updated: 2024/12/06 13:27:51 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pa(int *a, int *b, int *minp_a, int *minp_b)
+void	inst_swap(t_stack *stack)
 {
-	*a = *b;
-	*b = 0;
-	(*minp_a)--;
-	(*minp_b)++;
-	ft_printf("pa\n");
-}
-
-void	pb(int *a, int *b, int *minp_a, int *minp_b)
-{
-	*b = *a;
-	*a = 0;
-	(*minp_a)++;
-	(*minp_b)--;
-	ft_printf("pb\n");
-}
-
-void	ra(int *stack_a, int minp_a, int max_pos)
-{
-	int	i;
 	int	tmp;
 
-	i = 0;
-	tmp = stack_a[minp_a];
-	while (i < max_pos - minp_a)
+	if (stack->size < 2)
+		return ;
+	tmp = stack->stack[stack->minp];
+	stack->stack[stack->minp] = stack->stack[stack->minp + 1];
+	stack->stack[stack->minp + 1] = tmp;
+}
+
+void	inst_push(t_stack *src, t_stack *dst)
+{
+	if (src->size == 0)
+		return ;
+	dst->stack[dst->minp - 1] = src->stack[src->minp];
+	dst->minp--;
+	src->minp++;
+	dst->size++;
+	src->size--;
+}
+
+void	inst_rotate(t_stack *stack)
+{
+	int	tmp;
+	int	i;
+
+	if (stack->size < 2)
+		return ;
+	tmp = stack->stack[stack->minp];
+	i = stack->minp;
+	while (i < stack->maxp)
 	{
-		stack_a[minp_a + i] = stack_a[minp_a + i + 1];
+		stack->stack[i] = stack->stack[i + 1];
 		i++;
 	}
-	stack_a[max_pos] = tmp;
-	ft_printf("ra\n");
+	stack->stack[stack->maxp] = tmp;
 }
 
-void	rra(int *stack_a, int minp_a, int max_pos)
+void	inst_rev_rotate(t_stack *stack)
 {
+	int	tmp;
 	int	i;
-	int	tmp;
 
-	i = 0;
-	tmp = stack_a[max_pos];
-	while (i < max_pos - minp_a)
+	if (stack->size < 2)
+		return ;
+	tmp = stack->stack[stack->maxp];
+	i = stack->maxp;
+	while (i > stack->minp)
 	{
-		stack_a[max_pos - i] = stack_a[max_pos - i - 1];
-		i++;
+		stack->stack[i] = stack->stack[i - 1];
+		i--;
 	}
-	stack_a[minp_a] = tmp;
-	ft_printf("rra\n");
-}
-
-void	sa(int *stack_a, int minp_a)
-{
-	int	tmp;
-
-	tmp = stack_a[minp_a];
-	stack_a[minp_a] = stack_a[minp_a + 1];
-	stack_a[minp_a + 1] = tmp;
-	ft_printf("sa\n");
+	stack->stack[stack->minp] = tmp;
 }

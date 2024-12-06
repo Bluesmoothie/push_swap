@@ -6,21 +6,21 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:59:05 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/05 12:12:44 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/06 13:05:01 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*sort(int *stack, int size)
+int	*sort(t_stack *stack, t_slist *list)
 {
 	int	*sorted;
 	int	i;
 	int	tmp;
 
-	sorted = dup_stack(stack, size);
+	sorted = dup_stack(stack->stack, stack->size, list);
 	i = 0;
-	while (i < size - 1)
+	while (i < stack->maxp)
 	{
 		if (sorted[i] < sorted[i + 1])
 		{
@@ -35,14 +35,14 @@ int	*sort(int *stack, int size)
 	return (sorted);
 }
 
-int	*dup_stack(int *stack, int size)
+int	*dup_stack(int *stack, int size, t_slist *list)
 {
 	int	*dup;
 	int	i;
 
 	dup = malloc(sizeof(int) * size);
 	if (!dup)
-		error();
+		error(list, 1);
 	i = 0;
 	while (i < size)
 	{
