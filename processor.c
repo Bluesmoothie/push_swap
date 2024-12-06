@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 18:00:55 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 19:53:28 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/06 20:00:13 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,13 @@ void	process_small(t_slist *list)
 void	process_mid(t_slist *list)
 {
 	inst_decoder(PB, list);
-	inst_decoder(PB, list);
+	if (list->stack_a->size == 5)
+		inst_decoder(PB, list);
 	process_small(list);
 	calc_mov(list);
 	if (list->stack_a->size == 5)
 		calc_mov(list);
+	r_or_rr(list->stack_a, list->sorted[0], list);
 }
 
 void	process_big(t_slist *list)

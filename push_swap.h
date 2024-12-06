@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 19:50:30 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/06 19:58:21 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ enum e_instructions
 //push_swap.c
 void	error(t_slist *list, int error);
 t_slist	*list_init(void);
-// void	print_state(t_slist *list);
+void	print_state(t_slist *list);
 
 //parse.c
 t_stack	*parse_args(int argc, char **argv, t_slist *list);
