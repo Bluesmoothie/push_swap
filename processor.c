@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 18:00:55 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 19:51:02 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/06 19:53:28 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	process_mid(t_slist *list)
 	inst_decoder(PB, list);
 	process_small(list);
 	calc_mov(list);
-	calc_mov(list);
+	if (list->stack_a->size == 5)
+		calc_mov(list);
 }
 
 void	process_big(t_slist *list)
