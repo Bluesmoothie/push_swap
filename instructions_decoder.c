@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:40:48 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 13:18:13 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/06 16:50:13 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	inst_decoder(int inst, t_slist *list)
 		inst_rev_rotate(list->stack_b);
 	else if (inst == RRR)
 		inst_rev_rotate_both(list);
+	inst_print(inst);
 }
 
 void	inst_swap_both(t_slist *list)
@@ -54,4 +55,30 @@ void	inst_rev_rotate_both(t_slist *list)
 {
 	inst_rev_rotate(list->stack_a);
 	inst_rev_rotate(list->stack_b);
+}
+
+void	inst_print(int inst)
+{
+	if (inst == SA)
+		ft_printf("sa\n");
+	else if (inst == SB)
+		ft_printf("sb\n");
+	else if (inst == SS)
+		ft_printf("ss\n");
+	else if (inst == PA)
+		ft_printf("pa\n");
+	else if (inst == PB)
+		ft_printf("pb\n");
+	else if (inst == RA)
+		ft_printf("ra\n");
+	else if (inst == RB)
+		ft_printf("rb\n");
+	else if (inst == RR)
+		ft_printf("rr\n");
+	else if (inst == RRA)
+		ft_printf("rra\n");
+	else if (inst == RRB)
+		ft_printf("rrb\n");
+	else if (inst == RRR)
+		ft_printf("rrr\n");
 }

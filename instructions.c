@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:16:38 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 14:32:03 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/06 16:28:46 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	inst_push(t_stack *src, t_stack *dst)
 	dst->stack[dst->minp - 1] = src->stack[src->minp];
 	dst->minp--;
 	src->minp++;
-	dst->size++;
-	src->size--;
 }
 
 void	inst_rotate(t_stack *stack)
