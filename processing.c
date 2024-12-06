@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:38:51 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 13:55:03 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/06 14:29:05 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	process(t_slist *list)
 	int	i;
 
 	i = 0;
-	while (!is_sorted(list))
+	while (list->stack_a->minp < list->stack_a->maxp)
 	{
 		if (list->stack_a->stack[list->stack_a->minp] == list->sorted[list->stack_a->maxp - i])
 		{
@@ -32,7 +32,7 @@ void	process(t_slist *list)
 		}
 		i++;
 	}
-	while (list->stack_b->size > 0)
+	while (list->stack_b->minp < list->stack_b->maxp)
 	{
 		inst_push(list->stack_b, list->stack_a);
 		ft_printf("pa\n");
