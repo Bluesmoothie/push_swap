@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:13 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 14:23:23 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/06 14:35:55 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	main(int argc, char **argv)
 	else
 		list->stack_a = alt_parse_args(&argc, argv[1], list);
 	list->stack_b = init_stack(list->stack_a->size, list);
+	list->stack_b->maxp = list->stack_a->maxp;
+	list->stack_b->minp = list->stack_b->maxp;
 	list->sorted = sort(list->stack_a, list);
 	if (!is_sorted(list))
 		process(list);
