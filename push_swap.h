@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 14:02:30 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/06 18:03:34 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ enum e_instructions
 //push_swap.c
 void	error(t_slist *list, int error);
 t_slist	*list_init(void);
+// void	print_state(t_slist *list);
 
 //parse.c
 t_stack	*parse_args(int argc, char **argv, t_slist *list);
@@ -68,15 +69,23 @@ int		*sort(t_stack *stack, t_slist *list);
 int		*dup_stack(int *stack, int size, t_slist *list);
 
 //processing.c
-void	process(t_slist *list);
+void	choose_process(t_slist *list);
 int		is_sorted(t_slist *list);
-void	r_or_rr(t_stack *stack, int	to_find);
+void	r_or_rr(t_stack *stack, int to_find, t_slist *list);
+// void	process_basic(t_slist *list);
+
+//processor.c
+void	process_small(t_slist *list);
+void	process_mid(t_slist *list);
+void	process_big(t_slist *list);
+void	process_rbig(t_slist *list);
 
 //instructions_decoder.c
 void	inst_decoder(int inst, t_slist *list);
 void	inst_swap_both(t_slist *list);
 void	inst_rotate_both(t_slist *list);
 void	inst_rev_rotate_both(t_slist *list);
+void	inst_print(int inst);
 
 //instructions.c
 void	inst_swap(t_stack *stack);
