@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:59:05 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 13:05:01 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/06 16:35:10 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	*sort(t_stack *stack, t_slist *list)
 	i = 0;
 	while (i < stack->maxp)
 	{
-		if (sorted[i] < sorted[i + 1])
+		if (sorted[i] > sorted[i + 1])
 		{
 			tmp = sorted[i];
 			sorted[i] = sorted[i + 1];
