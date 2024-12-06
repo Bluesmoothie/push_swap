@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:16:38 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 13:27:51 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/06 14:32:03 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	inst_swap(t_stack *stack)
 {
 	int	tmp;
 
-	if (stack->size < 2)
+	if (stack->minp < stack->maxp)
 		return ;
 	tmp = stack->stack[stack->minp];
 	stack->stack[stack->minp] = stack->stack[stack->minp + 1];
@@ -25,7 +25,7 @@ void	inst_swap(t_stack *stack)
 
 void	inst_push(t_stack *src, t_stack *dst)
 {
-	if (src->size == 0)
+	if (src->minp == src->size)
 		return ;
 	dst->stack[dst->minp - 1] = src->stack[src->minp];
 	dst->minp--;
