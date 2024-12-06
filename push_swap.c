@@ -6,13 +6,11 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:13 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 14:35:55 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/06 17:57:41 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// void	print_state(int *stack_a, int *stack_b, int *sorted, int max_pos);
 
 int	main(int argc, char **argv)
 {
@@ -29,10 +27,10 @@ int	main(int argc, char **argv)
 		list->stack_a = alt_parse_args(&argc, argv[1], list);
 	list->stack_b = init_stack(list->stack_a->size, list);
 	list->stack_b->maxp = list->stack_a->maxp;
-	list->stack_b->minp = list->stack_b->maxp;
+	list->stack_b->minp = list->stack_b->maxp + 1;
 	list->sorted = sort(list->stack_a, list);
 	if (!is_sorted(list))
-		process(list);
+		choose_process(list);
 	error(list, 0);
 	return (0);
 }
@@ -77,15 +75,26 @@ t_slist	*list_init(void)
 	return (list);
 }
 
-// void	print_state(int *stack_a, int *stack_b, int *sorted, int max_pos)
-// {
-// 	int	i;
+void	print_state(t_slist *list)
+{
+	int		i;
+	char	a;
+	char	b;
 
-// 	i = 0;
-// 	ft_printf("a     b     s\n\n");
-// 	while (i <= max_pos)
-// 	{
-// 		ft_printf("%d     %d     %d\n", stack_a[i], stack_b[i], sorted[max_pos - i]);
-// 		i++;
-// 	}
-// }
+	i = 0;
+	ft_printf("a    b    s\n\n");
+	while (i <= list->stack_a->maxp)
+	{
+		if (i >= list->stack_a->minp)
+			a = list->stack_a->stack[i] + '0';
+		else
+			a = 'X';
+		if (i >= list->stack_b->minp)
+			b = list->stack_b->stack[i] + '0';
+		else
+			b = 'X';
+		ft_printf("%c    %c    %d\n", a, b, list->sorted[i]);
+		i++;
+	}
+	ft_printf("\n");
+}
