@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 19:26:49 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 13:55:38 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/06 14:20:03 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ t_stack	*parse_args(int argc, char **argv, t_slist *list)
 
 int	verify_arg(char *arg, t_stack *stack)
 {
-	int	i;
+	int		i;
+	long	num;
 
 	i = 0;
 	while (arg[i])
@@ -46,10 +47,11 @@ int	verify_arg(char *arg, t_stack *stack)
 			return (1);
 		i++;
 	}
-	if (ft_atol(arg) > INT_MAX || ft_atol(arg) < INT_MIN)
+	num = ft_atol(arg);
+	if (num > INT_MAX || num < INT_MIN)
 		return (1);
 	i = 0;
-	while (i < stack->size)
+	while (i <= stack->maxp && stack->maxp > 0)
 	{
 		if (stack->stack[i] == ft_atoi(arg))
 			return (1);
