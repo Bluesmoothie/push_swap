@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:13 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 14:02:13 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/06 14:23:23 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,24 @@ int	main(int argc, char **argv)
 
 void	error(t_slist *list, int error)
 {
-	if (list->stack_a->stack)
-		free(list->stack_a->stack);
-	if (list->stack_b->stack)
-		free(list->stack_b->stack);
-	if (list->sorted)
-		free(list->sorted);
-	if (list->stack_a)
-		free(list->stack_a);
-	if (list->stack_b)
-		free(list->stack_b);
 	if (list)
+	{
+		if (list->stack_a)
+		{
+			if (list->stack_a->stack)
+				free(list->stack_a->stack);
+			free(list->stack_a);
+		}
+		if (list->stack_b)
+		{
+			if (list->stack_b->stack)
+				free(list->stack_b->stack);
+			free(list->stack_b);
+		}
+		if (list->sorted)
+			free(list->sorted);
 		free(list);
+	}
 	if (error)
 	{
 		ft_putstr_fd("Error\n", 2);
