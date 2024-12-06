@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 18:03:34 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/06 19:50:30 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ void	process_small(t_slist *list);
 void	process_mid(t_slist *list);
 void	process_big(t_slist *list);
 void	process_rbig(t_slist *list);
+
+//processor_utils.c
+void	calc_mov(t_slist *list);
 
 //instructions_decoder.c
 void	inst_decoder(int inst, t_slist *list);

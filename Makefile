@@ -17,7 +17,8 @@ SRC_FILES	=	push_swap 				\
 				instructions			\
 				processing				\
 				instructions_decoder	\
-				processor
+				processor				\
+				processor_utils			
 SRC 		= 	$(addsuffix .c, $(SRC_FILES))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
