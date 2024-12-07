@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:23:44 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/07 14:37:14 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/07 14:54:00 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,19 @@ void	calc_mov(t_slist *list)
 	stack_b = list->stack_b;
 	if (stack_b->stack[stack_b->minp] == list->sorted[list->stack_a->maxp])
 	{
-		r_or_rr(stack_a, list->sorted[stack_b->size - 1], list);
+		r_or_rr(stack_a, list->sorted[0], list);
 		inst_decoder(PA, list);
 	}
 	else
 	{
-		pos = 1;
+		pos = 0;
 		while (stack_b->stack[stack_b->minp] != list->sorted[pos])
 			pos++;
 		pos++;
+		if (list->sorted[pos] == stack_b->stack[stack_b->maxp])
+			pos++;
+		if (pos > stack_b->maxp)
+			pos = 0;
 		r_or_rr(stack_a, list->sorted[pos], list);
 		inst_decoder(PA, list);
 	}
