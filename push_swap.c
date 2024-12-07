@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:13 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 20:07:55 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/07 14:16:00 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	print_state(t_slist *list)
 		else
 			a = "X";
 		if (i >= list->stack_b->minp)
-			b = ft_itoa(list->stack_a->stack[i]);
+			b = ft_itoa(list->stack_b->stack[i]);
 		else
 			b = "X";
 		ft_printf("%s    %s    %d\n", a, b, list->sorted[i]);
