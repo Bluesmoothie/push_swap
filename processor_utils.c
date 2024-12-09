@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:23:44 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/07 14:54:00 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/09 14:19:33 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,31 @@ void	calc_mov(t_slist *list)
 			pos = 0;
 		r_or_rr(stack_a, list->sorted[pos], list);
 		inst_decoder(PA, list);
+	}
+}
+
+void	calc_chunck(t_slist	*list, int chunks)
+{
+	int		total_width;
+
+	total_width = list->stack_a->maxval - list->stack_a->minval;
+	list->chunck_width = total_width / chunks;
+}
+
+void	chunk_move(t_slist *list, int chunk)
+{
+	int	start;
+	int	end;
+	int	r;
+	int	rr;
+
+	start = list->chunck_width * (chunk - 1) + stack_a->minval;
+	end = list->chunck_width * chunk + stack_a->minval;
+	while (start <= end)
+	{
+		r = -1;
+		rr = -1;
+		while (
+		start++;
 	}
 }

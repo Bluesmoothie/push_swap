@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 20:07:45 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/09 14:10:52 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,22 @@ typedef struct s_slist
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 	int		*sorted;
+	int		chunck_width;
 }	t_slist;
 
 enum e_instructions
 {
-	SA = 11,
-	SB = 12,
-	SS = 13,
-	PA = 21,
-	PB = 22,
-	RA = 31,
-	RB = 32,
-	RR = 33,
-	RRA = 41,
-	RRB = 42,
-	RRR = 43
+	SA,
+	SB,
+	SS,
+	PA,
+	PB,
+	RA,
+	RB,
+	RR,
+	RRA,
+	RRB,
+	RRR
 };
 
 //push_swap.c
@@ -82,6 +83,7 @@ void	process_rbig(t_slist *list);
 
 //processor_utils.c
 void	calc_mov(t_slist *list);
+void	calc_chunck(t_slist	*list, int chunks);
 
 //instructions_decoder.c
 void	inst_decoder(int inst, t_slist *list);
