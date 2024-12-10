@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:38:51 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 18:24:22 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/10 13:21:15 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,20 +64,3 @@ void	r_or_rr(t_stack *stack, int to_find, t_slist *list)
 		}
 	}
 }
-
-// void	process_basic(t_slist *list)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (list->stack_a->minp < list->stack_a->maxp)
-// 	{
-// 		if (list->stack_a->stack[list->stack_a->minp] == list->sorted[list->stack_a->minp])
-// 			inst_decoder(PB, list);
-// 		else
-// 			r_or_rr(list->stack_a, list->sorted[list->stack_a->minp], list);
-// 		i++;
-// 	}
-// 	while (list->stack_b->minp <= list->stack_b->maxp)
-// 		inst_decoder(PA, list);
-// }

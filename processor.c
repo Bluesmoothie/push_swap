@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 18:00:55 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/09 14:11:43 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/10 13:53:49 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,18 @@ void	process_mid(t_slist *list)
 void	process_big(t_slist *list)
 {
 	int	i;
+	int	chunk_size;
 
 	i = 1;
 	calc_chunck(list, 5);
 	ft_printf("chunck_width = %d\n", list->chunck_width);
 	while (i <= 5)
 	{
-		chunck_move(list, i);
+		chunk_size = chunk_nums_gen(list, i);
+		chunk_move(list, chunk_size);
+		sort_chunk(list, chunk_size);
+		process_chunk(list, i);
+		free(list->sorted_chunk);
 		i++;
 	}
 }

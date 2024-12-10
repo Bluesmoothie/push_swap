@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/09 14:10:52 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/10 13:52:53 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_slist
 	t_stack	*stack_b;
 	int		*sorted;
 	int		chunck_width;
+	int		*chunck_nums;
+	int		*sorted_chunk;
 }	t_slist;
 
 enum e_instructions
@@ -55,6 +57,10 @@ void	error(t_slist *list, int error);
 t_slist	*list_init(void);
 void	print_state(t_slist *list);
 
+//free.c
+void	free_stack(t_stack *stack);
+void	free_chunk(t_slist *list);
+
 //parse.c
 t_stack	*parse_args(int argc, char **argv, t_slist *list);
 int		verify_arg(char *arg, t_stack *stack);
@@ -68,12 +74,12 @@ long	ft_atol(const char *nptr);
 //sort.c
 int		*sort(t_stack *stack, t_slist *list);
 int		*dup_stack(int *stack, int size, t_slist *list);
+void	sort_chunk(t_slist *list, int chunk_size);
 
 //processing.c
 void	choose_process(t_slist *list);
 int		is_sorted(t_slist *list);
 void	r_or_rr(t_stack *stack, int to_find, t_slist *list);
-// void	process_basic(t_slist *list);
 
 //processor.c
 void	process_small(t_slist *list);
@@ -83,7 +89,18 @@ void	process_rbig(t_slist *list);
 
 //processor_utils.c
 void	calc_mov(t_slist *list);
+int		intchr(int *tab, int size, int to_find);
+
+//chunk.c
+void	chunk_move(t_slist *list, int chunk_size);
+void	process_chunk(t_slist *list, int chunk);
+
+//chunk_utils.c
+int		find_top(t_stack *stack, int *to_find, int chunk_size);
+int		find_bottom(t_stack *stack, int *to_find, int chunk_size);
+int		chunk_nums_gen(t_slist *list, int chunk);
 void	calc_chunck(t_slist	*list, int chunks);
+void	r_or_rr_chunk(t_slist *list);
 
 //instructions_decoder.c
 void	inst_decoder(int inst, t_slist *list);

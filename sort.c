@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:59:05 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 16:35:10 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/10 13:37:12 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,25 @@ int	*dup_stack(int *stack, int size, t_slist *list)
 		i++;
 	}
 	return (dup);
+}
+
+void	sort_chunk(t_slist *list, int chunk_size)
+{
+	int	i;
+	int	tmp;
+
+	i = 0;
+	list->sorted_chunk = dup_stack(list->chunck_nums, chunk_size, list);
+	while (i < chunk_size)
+	{
+		if (list->sorted_chunk[i] < list->sorted_chunk[i + 1])
+		{
+			tmp = list->sorted_chunk[i];
+			list->sorted_chunk[i] = list->sorted_chunk[i + 1];
+			list->sorted_chunk[i + 1] = tmp;
+			i = 0;
+		}
+		else
+			i++;
+	}
 }
