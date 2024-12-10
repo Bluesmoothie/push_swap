@@ -4,8 +4,8 @@ NAME		=   push_swap
 
 #			GCC
 
-CC			=	gcc
-CFLAGS		=	-ggdb -Wall -Wextra -Werror -I $(INCLUDE) -I $(LIBFT)/includes
+CC			=	clang
+CFLAGS		=	-g -Wall -Wextra -Werror -I $(INCLUDE) -I $(LIBFT)/includes
 INCLUDE 	=	.
 
 #			PUSH_SWAP
@@ -22,6 +22,7 @@ SRC_FILES	=	chunk_utils				\
 				processor				\
 				push_swap				\
 				sort					\
+				tests					\
 
 SRC 		= 	$(addsuffix .c, $(SRC_FILES))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))

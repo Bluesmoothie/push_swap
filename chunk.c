@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:20:05 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/10 13:52:28 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/10 16:12:55 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ void	chunk_move(t_slist *list, int chunk_size)
 		top = find_top(list->stack_a, list->chunck_nums, chunk_size);
 		bottom = find_bottom(list->stack_a, list->chunck_nums, chunk_size);
 		if (top - list->stack_a->minp <= list->stack_a->maxp - bottom)
-			r_or_rr(list->stack_a, list->stack_a->stack[top], list);
+			r_or_rr(list->stack_a, list->stack_a->stack[top], list, XA);
 		else
-			r_or_rr(list->stack_a, list->stack_a->stack[bottom], list);
+			r_or_rr(list->stack_a, list->stack_a->stack[bottom], list, XA);
 		inst_decoder(PB, list);
+		i++;
 	}
 }
 
@@ -45,11 +46,14 @@ void	process_chunk(t_slist *list, int chunk)
 		if (stack_b->stack[stack_b->minp] == list->sorted_chunk[stack_b->minp])
 			inst_decoder(PA, list);
 		else
-			r_or_rr(stack_b, list->sorted_chunk[stack_b->minp], list);
+			r_or_rr(stack_b, list->sorted_chunk[stack_b->minp], list, XB);
 		i++;
 	}
 	if (chunk > 1)
 		r_or_rr_chunk(list);
-	while (stack_a->minp >= 0)
+	while (i)
+	{
 		inst_decoder(PB, list);
+		i--;
+	}
 }

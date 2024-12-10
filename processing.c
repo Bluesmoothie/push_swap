@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:38:51 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/10 13:21:15 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/10 16:14:36 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	is_sorted(t_slist *list)
 	return (1);
 }
 
-void	r_or_rr(t_stack *stack, int to_find, t_slist *list)
+void	r_or_rr(t_stack *stack, int to_find, t_slist *list, int stack_mask)
 {
 	int	pos;
 
@@ -51,7 +51,7 @@ void	r_or_rr(t_stack *stack, int to_find, t_slist *list)
 	{
 		while (stack->minp < pos)
 		{
-			inst_decoder(RA, list);
+			inst_decoder(stack_mask + RX, list);
 			pos--;
 		}
 	}
@@ -59,7 +59,7 @@ void	r_or_rr(t_stack *stack, int to_find, t_slist *list)
 	{
 		while (pos < stack->size)
 		{
-			inst_decoder(RRA, list);
+			inst_decoder(stack_mask + RRX, list);
 			pos++;
 		}
 	}

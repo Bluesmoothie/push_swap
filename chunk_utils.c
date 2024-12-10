@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:28:53 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/10 13:50:53 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/10 16:24:21 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	find_bottom(t_stack *stack, int *to_find, int chunk_size)
 	{
 		if (intchr(to_find, chunk_size, stack->stack[i]))
 			return (i);
-		i++;
+		i--;
 	}
 	return (0);
 }
@@ -56,7 +56,7 @@ int	chunk_nums_gen(t_slist *list, int chunk)
 	{
 		if (intchr(list->stack_a->stack, list->stack_a->size, start))
 		{
-			list->chunck_nums[i] = 1;
+			list->chunck_nums[i] = start;
 			i++;
 		}
 		start++;
@@ -77,7 +77,7 @@ void	r_or_rr_chunk(t_slist *list)
 	int		gap_size;
 	int		i;
 	int		tmp;
-	int 	pos;
+	int		pos;
 	t_stack	*stack_a;
 
 	stack_a = list->stack_a;
@@ -93,5 +93,5 @@ void	r_or_rr_chunk(t_slist *list)
 		}
 		i++;
 	}
-	r_or_rr(stack_a, stack_a->stack[pos], list);
+	r_or_rr(stack_a, stack_a->stack[pos], list, XA);
 }

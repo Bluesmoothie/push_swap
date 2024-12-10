@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:29:53 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/10 13:32:19 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/10 15:54:09 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,13 @@ void	free_stack(t_stack *stack)
 void	free_chunk(t_slist *list)
 {
 	if (list->chunck_nums)
+	{
 		free(list->chunck_nums);
+		list->chunck_nums = NULL;
+	}
 	if (list->sorted_chunk)
+	{
 		free(list->sorted_chunk);
+		list->sorted_chunk = NULL;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/10 13:52:53 by ygille           ###   ########.fr       */
+/*   Updated: 2024/12/10 16:14:48 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,29 @@ typedef struct s_slist
 
 enum e_instructions
 {
-	SA,
-	SB,
-	SS,
-	PA,
-	PB,
-	RA,
-	RB,
-	RR,
-	RRA,
-	RRB,
-	RRR
+	XA = 1,
+	XB = 2,
+	XR = 3,
+	SX = 10,
+	SA = 11,
+	SB = 12,
+	SS = 13,
+	PX = 20,
+	PA = 21,
+	PB = 22,
+	RX = 30,
+	RA = 31,
+	RB = 32,
+	RR = 33,
+	RRX = 40,
+	RRA = 41,
+	RRB = 42,
+	RRR = 43
 };
 
 //push_swap.c
 void	error(t_slist *list, int error);
 t_slist	*list_init(void);
-void	print_state(t_slist *list);
 
 //free.c
 void	free_stack(t_stack *stack);
@@ -79,7 +85,7 @@ void	sort_chunk(t_slist *list, int chunk_size);
 //processing.c
 void	choose_process(t_slist *list);
 int		is_sorted(t_slist *list);
-void	r_or_rr(t_stack *stack, int to_find, t_slist *list);
+void	r_or_rr(t_stack *stack, int to_find, t_slist *list, int stack_mask);
 
 //processor.c
 void	process_small(t_slist *list);
@@ -114,5 +120,9 @@ void	inst_swap(t_stack *stack);
 void	inst_push(t_stack *src, t_stack *dst);
 void	inst_rotate(t_stack *stack);
 void	inst_rev_rotate(t_stack *stack);
+
+//tests.c
+void	print_state(t_slist *list);
+void	print_chunk(int *chunk, int size);
 
 #endif
