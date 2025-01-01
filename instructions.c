@@ -6,12 +6,15 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:16:38 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/07 14:31:35 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/01 14:12:34 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+** Swap the first two elements of the stack
+*/
 void	inst_swap(t_stack *stack)
 {
 	int	tmp;
@@ -23,6 +26,9 @@ void	inst_swap(t_stack *stack)
 	stack->stack[stack->minp + 1] = tmp;
 }
 
+/*
+** Push the first element of src to dst
+*/
 void	inst_push(t_stack *src, t_stack *dst)
 {
 	if (src->minp == src->size)
@@ -32,6 +38,9 @@ void	inst_push(t_stack *src, t_stack *dst)
 	src->minp++;
 }
 
+/*
+** Rotate the stack
+*/
 void	inst_rotate(t_stack *stack)
 {
 	int	tmp;
@@ -49,6 +58,9 @@ void	inst_rotate(t_stack *stack)
 	stack->stack[stack->maxp] = tmp;
 }
 
+/*
+** Reverse rotate the stack
+*/
 void	inst_rev_rotate(t_stack *stack)
 {
 	int	tmp;

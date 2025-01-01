@@ -6,12 +6,15 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:20:05 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/10 16:12:55 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/01 14:16:20 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+** Move the chunk to the stack_b
+*/
 void	chunk_move(t_slist *list, int chunk_size)
 {
 	int	top;
@@ -32,14 +35,15 @@ void	chunk_move(t_slist *list, int chunk_size)
 	}
 }
 
+/*
+** Sort the chunk
+*/
 void	process_chunk(t_slist *list, int chunk)
 {
 	int		i;
-	t_stack	*stack_a;
 	t_stack	*stack_b;
 
 	i = 0;
-	stack_a = list->stack_a;
 	stack_b = list->stack_b;
 	while (stack_b->minp < stack_b->maxp)
 	{

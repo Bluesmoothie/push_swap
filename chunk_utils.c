@@ -6,12 +6,15 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:28:53 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/10 16:24:21 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/01 14:14:56 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+** Find the toppest number from to_find in the stack
+*/
 int	find_top(t_stack *stack, int *to_find, int chunk_size)
 {
 	int	i;
@@ -26,6 +29,9 @@ int	find_top(t_stack *stack, int *to_find, int chunk_size)
 	return (0);
 }
 
+/*
+** Find the bottomest number from to_find in the stack
+*/
 int	find_bottom(t_stack *stack, int *to_find, int chunk_size)
 {
 	int	i;
@@ -40,6 +46,9 @@ int	find_bottom(t_stack *stack, int *to_find, int chunk_size)
 	return (0);
 }
 
+/*
+** Generate the numbers of the chunk that are in the stack
+*/
 int	chunk_nums_gen(t_slist *list, int chunk)
 {
 	int	max;
@@ -64,6 +73,9 @@ int	chunk_nums_gen(t_slist *list, int chunk)
 	return (i);
 }
 
+/*
+** Calculate the width of the chunk
+*/
 void	calc_chunck(t_slist	*list, int chunks)
 {
 	int		total_width;
@@ -72,6 +84,9 @@ void	calc_chunck(t_slist	*list, int chunks)
 	list->chunck_width = total_width / chunks;
 }
 
+/*
+** Rotate or reverse rotate the stack to put the chunk at the top
+*/
 void	r_or_rr_chunk(t_slist *list)
 {
 	int		gap_size;

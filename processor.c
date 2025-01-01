@@ -6,12 +6,15 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 18:00:55 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/10 16:13:32 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/01 14:16:44 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+** Process a stack with 3 elements
+*/
 void	process_small(t_slist *list)
 {
 	int	minp;
@@ -37,6 +40,9 @@ void	process_small(t_slist *list)
 		inst_decoder(RRA, list);
 }
 
+/*
+** Process a stack with 5 or 4 elements
+*/
 void	process_mid(t_slist *list)
 {
 	inst_decoder(PB, list);
@@ -49,6 +55,9 @@ void	process_mid(t_slist *list)
 	r_or_rr(list->stack_a, list->sorted[0], list, XA);
 }
 
+/*
+** Process a stack with more than 5 to 100 elements
+*/
 void	process_big(t_slist *list)
 {
 	int	i;

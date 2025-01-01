@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:13 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/10 14:48:13 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/01 14:16:55 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
+/*
+** Free the list and exit
+** display an error message if error is not 0
+*/
 void	error(t_slist *list, int error)
 {
 	if (list)
@@ -55,6 +59,9 @@ void	error(t_slist *list, int error)
 	}
 }
 
+/*
+** Initialize the list structure
+*/
 t_slist	*list_init(void)
 {
 	t_slist	*list;

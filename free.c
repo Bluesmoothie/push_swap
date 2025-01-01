@@ -6,12 +6,15 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:29:53 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/10 15:54:09 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/01 14:13:30 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+** Free the stack
+*/
 void	free_stack(t_stack *stack)
 {
 	if (stack->stack)
@@ -19,6 +22,9 @@ void	free_stack(t_stack *stack)
 	free(stack);
 }
 
+/*
+** Free the chunk
+*/
 void	free_chunk(t_slist *list)
 {
 	if (list->chunck_nums)

@@ -6,12 +6,15 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:59:05 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/10 13:37:12 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/01 14:07:36 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+** Sort stack in a duplicate array
+*/
 int	*sort(t_stack *stack, t_slist *list)
 {
 	int	*sorted;
@@ -35,6 +38,9 @@ int	*sort(t_stack *stack, t_slist *list)
 	return (sorted);
 }
 
+/*
+** Duplicate a stack
+*/
 int	*dup_stack(int *stack, int size, t_slist *list)
 {
 	int	*dup;
@@ -52,6 +58,9 @@ int	*dup_stack(int *stack, int size, t_slist *list)
 	return (dup);
 }
 
+/*
+** Sort a chunk
+*/
 void	sort_chunk(t_slist *list, int chunk_size)
 {
 	int	i;

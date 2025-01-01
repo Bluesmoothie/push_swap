@@ -6,12 +6,15 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:47:43 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/10 14:50:01 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/01 14:06:59 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+** Print the state of the stacks
+*/
 void	print_state(t_slist *list)
 {
 	int		i;
@@ -36,6 +39,9 @@ void	print_state(t_slist *list)
 	ft_printf("\n");
 }
 
+/*
+** Print a chunk
+*/
 void	print_chunk(int *chunk, int size)
 {
 	int	i;

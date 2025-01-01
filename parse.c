@@ -6,12 +6,15 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 19:26:49 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 14:20:03 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/01 14:11:44 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+** Parse the arguments and fill the stack
+*/
 t_stack	*parse_args(int argc, char **argv, t_slist *list)
 {
 	t_stack	*stack;
@@ -35,6 +38,9 @@ t_stack	*parse_args(int argc, char **argv, t_slist *list)
 	return (stack);
 }
 
+/*
+** Verify if the argument is a number and if it is not already in the stack
+*/
 int	verify_arg(char *arg, t_stack *stack)
 {
 	int		i;
@@ -60,6 +66,10 @@ int	verify_arg(char *arg, t_stack *stack)
 	return (0);
 }
 
+/*
+** Parse the arguments and fill the stack
+** when the arguments are in a single string
+*/
 t_stack	*alt_parse_args(int	*argc, char *arg, t_slist *list)
 {
 	char	**split;
@@ -78,6 +88,9 @@ t_stack	*alt_parse_args(int	*argc, char *arg, t_slist *list)
 	return (stack);
 }
 
+/*
+** Fill the stack with split
+*/
 t_stack	*fill_stack(char **split, int size, t_slist *list)
 {
 	t_stack	*stack;
@@ -102,6 +115,9 @@ t_stack	*fill_stack(char **split, int size, t_slist *list)
 	return (stack);
 }
 
+/*
+** Initialize the stack structure
+*/
 t_stack	*init_stack(int size, t_slist *list)
 {
 	t_stack	*stack;

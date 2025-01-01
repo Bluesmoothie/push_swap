@@ -6,12 +6,15 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:38:51 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/10 16:14:36 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/01 14:10:55 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+** Choose the process to apply depending on the size of the stack
+*/
 void	choose_process(t_slist *list)
 {
 	if (list->stack_a->size == 2)
@@ -26,6 +29,9 @@ void	choose_process(t_slist *list)
 		process_rbig(list);
 }
 
+/*
+** Check if the stack is sorted
+*/
 int	is_sorted(t_slist *list)
 {
 	int	i;
@@ -40,6 +46,10 @@ int	is_sorted(t_slist *list)
 	return (1);
 }
 
+/*
+** Put the element to_find at the top of the stack
+** with the minimum number of instructions
+*/
 void	r_or_rr(t_stack *stack, int to_find, t_slist *list, int stack_mask)
 {
 	int	pos;

@@ -6,12 +6,15 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:40:48 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/06 16:50:13 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/01 14:12:59 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+** Decode the instruction and apply it
+*/
 void	inst_decoder(int inst, t_slist *list)
 {
 	if (inst == SA)
@@ -57,6 +60,9 @@ void	inst_rev_rotate_both(t_slist *list)
 	inst_rev_rotate(list->stack_b);
 }
 
+/*
+** Print the instruction code
+*/
 void	inst_print(int inst)
 {
 	if (inst == SA)

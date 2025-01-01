@@ -6,12 +6,15 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:23:44 by ygille            #+#    #+#             */
-/*   Updated: 2024/12/10 16:13:22 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/01 14:10:19 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+** Calculate the best move to 
+*/
 void	calc_mov(t_slist *list)
 {
 	t_stack	*stack_a;
@@ -40,6 +43,9 @@ void	calc_mov(t_slist *list)
 	}
 }
 
+/*
+** Check if an int is in an array
+*/
 int	intchr(int *tab, int size, int to_find)
 {
 	int	i;
