@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 18:00:55 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/01 14:16:44 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/08 13:58:34 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,15 @@ void	process_big(t_slist *list)
 		chunk_size = chunk_nums_gen(list, i);
 		if (!chunk_size)
 			break ;
+		ft_printf("chunk move %d\n", i);
 		chunk_move(list, chunk_size);
+		print_state(list);
+		ft_printf("chunk sort %d\n", i);
 		sort_chunk(list, chunk_size);
-		process_chunk(list, i);
+		print_state(list);
+		ft_printf("chunk process %d\n", i);
+		process_chunk(list, i, chunk_size);
+		print_state(list);
 		free(list->sorted_chunk);
 		i++;
 	}
