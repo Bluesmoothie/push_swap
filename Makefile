@@ -11,6 +11,7 @@ INCLUDE 	=	.
 #			PUSH_SWAP
 
 SRC_FILES	=	chunk_utils				\
+				chunk_utils2			\
 				chunk					\
 				free					\
 				ft_atol					\

@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:28:53 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/08 14:12:28 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/14 22:08:35 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,30 +87,28 @@ void	calc_chunck(t_slist	*list, int chunks)
 /*
 ** Rotate or reverse rotate the stack to put the chunk at the top
 */
-void	r_or_rr_chunk(t_slist *list, int bottom)
+void	r_or_rr_chunk(t_slist *list, int chunk_size)
 {
-	int		gap_size;
-	int		i;
-	int		tmp;
-	int		pos;
-	t_stack	*stack_a;
+	int	bottom;
+	int	pos;
 
-	stack_a = list->stack_a;
-	i = stack_a->minp;
-	gap_size = INT_MAX;
-	while (i < stack_a->size)
+	bottom = 0;
+	pos = list->stack_a->minp;
+	while (list->sorted[bottom] != list->sorted_chunk[chunk_size - 1])
+		bottom++;
+	bottom--;
+	while (list->stack_a->stack[pos] != list->sorted[bottom])
+		pos++;
+	if (pos - list->stack_a->minp <= list->stack_a->maxp + 1 - pos)
 	{
-		tmp = stack_a->stack[i] - bottom;
-		if (tmp < gap_size && tmp > 0)
-		{
-			gap_size = tmp;
-			pos = i;
-		}
-		i++;
+		while (list->sorted[bottom]
+			!= list->stack_a->stack[list->stack_a->maxp])
+			inst_decoder(RA, list);
 	}
-	ft_printf("pos = %d\n", pos);
-	pos++;
-	if (pos > stack_a->maxp)
-		pos = stack_a->minp;
-	r_or_rr(stack_a, stack_a->stack[pos], list, XA);
+	else
+	{
+		while (list->sorted[bottom]
+			!= list->stack_a->stack[list->stack_a->maxp])
+			inst_decoder(RRA, list);
+	}
 }

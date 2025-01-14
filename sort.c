@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:59:05 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/01 14:07:36 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/14 18:37:53 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	sort_chunk(t_slist *list, int chunk_size)
 
 	i = 0;
 	list->sorted_chunk = dup_stack(list->chunck_nums, chunk_size, list);
-	while (i < chunk_size)
+	while (i < chunk_size - 1)
 	{
 		if (list->sorted_chunk[i] < list->sorted_chunk[i + 1])
 		{

@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/08 14:11:43 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/14 22:14:44 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	process_small(t_slist *list);
 void	process_mid(t_slist *list);
 void	process_big(t_slist *list);
 void	process_rbig(t_slist *list);
+void	process_wchunk(t_slist *list, int chunk_num);
 
 //processor_utils.c
 void	calc_mov(t_slist *list);
@@ -106,7 +107,10 @@ int		find_top(t_stack *stack, int *to_find, int chunk_size);
 int		find_bottom(t_stack *stack, int *to_find, int chunk_size);
 int		chunk_nums_gen(t_slist *list, int chunk);
 void	calc_chunck(t_slist	*list, int chunks);
-void	r_or_rr_chunk(t_slist *list, int bottom);
+void	r_or_rr_chunk(t_slist *list, int chunk_size);
+
+//chunk_utils2.c
+int		last_chunk_nums_gen(t_slist *list, int chunk);
 
 //instructions_decoder.c
 void	inst_decoder(int inst, t_slist *list);
