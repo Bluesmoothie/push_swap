@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:20:05 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/14 22:07:45 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/17 15:46:50 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	process_chunk(t_slist *list, int chunk, int chunk_size)
 {
 	t_stack	*stack_b;
 	int		i;
+	int		min;
+	int		max;
 
 	i = 0;
 	stack_b = list->stack_b;
@@ -49,12 +51,18 @@ void	process_chunk(t_slist *list, int chunk, int chunk_size)
 		r_or_rr_chunk(list, chunk_size);
 	while (i < chunk_size)
 	{
-		if (stack_b->stack[stack_b->minp] == list->sorted_chunk[i])
+		min = find_min(stack_b, list->chunck_nums, chunk_size);
+		max = find_max(stack_b, list->chunck_nums, chunk_size);
+		if (min - list->stack_a->minp <= list->stack_a->maxp - max)
 		{
+			r_or_rr(stack_b, stack_b->stack[min], list, XB);
 			inst_decoder(PA, list);
-			i++;
+			inst_decoder(RA, list);
 		}
 		else
-			r_or_rr(stack_b, list->sorted_chunk[i], list, XB);
+		{
+			r_or_rr(stack_b, stack_b->stack[max], list, XB);
+			inst_decoder(PA, list);
+		}
 	}
 }

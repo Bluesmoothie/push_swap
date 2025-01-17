@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 21:34:49 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/14 22:08:08 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/17 17:33:17 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,10 @@ int	last_chunk_nums_gen(t_slist *list, int chunk)
 	}
 	return (i);
 }
+
+int	find_min(t_stack *stack, int *to_find, int chunk_size)
+{
+}
+
+int	find_max(t_stack *stack, int *to_find, int chunk_size)
+{
