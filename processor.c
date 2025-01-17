@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 18:00:55 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/17 13:56:05 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/17 19:38:13 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,14 @@ void	process_wchunk(t_slist *list, int chunk_num)
 			chunk_size = chunk_nums_gen(list, i);
 		else
 			chunk_size = last_chunk_nums_gen(list, i);
+		// ft_printf("=================chunk %d=================\n", i);
 		// print_chunk(list->chunck_nums, chunk_size);
 		if (chunk_size)
 		{
 			// ft_printf("chunk move %d\n", i);
 			chunk_move(list, chunk_size);
 			// print_state(list);
-			// ft_printf("chunk sort %d\n", i);
 			sort_chunk(list, chunk_size);
-			// print_state(list);
 			// ft_printf("chunk process %d\n", i);
 			process_chunk(list, i, chunk_size);
 			// print_state(list);
@@ -102,5 +101,10 @@ void	process_wchunk(t_slist *list, int chunk_num)
 	}
 	if (list->stack_a->stack[0] != list->sorted[0])
 		r_or_rr(list->stack_a, list->sorted[0], list, XA);
+	// ft_printf("=================sorted==================\n");
 	// print_state(list);
+	// if (is_sorted(list))
+	// 	ft_printf("sorted\n");
+	// else
+	// 	ft_printf("not sorted\n");
 }

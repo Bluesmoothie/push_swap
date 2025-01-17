@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 19:23:44 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/01 14:10:19 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/17 19:34:01 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,22 @@ int	intchr(int *tab, int size, int to_find)
 		i++;
 	}
 	return (0);
+}
+
+/*
+** Check if an int is in a stack
+** return -1 if false and the index if true
+*/
+int	intschr(t_stack *stack, int to_find)
+{
+	int	i;
+
+	i = stack->minp;
+	while (i <= stack->maxp)
+	{
+		if (stack->stack[i] == to_find)
+			return (i);
+		i++;
+	}
+	return (-1);
 }
