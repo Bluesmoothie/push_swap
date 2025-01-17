@@ -21,6 +21,7 @@ SRC_FILES	=	chunk_utils				\
 				processing				\
 				processor_utils			\
 				processor				\
+				replace					\
 				push_swap				\
 				sort					\
 				tests					\

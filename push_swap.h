@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/17 19:33:08 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/17 19:57:38 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,10 @@ void	process_wchunk(t_slist *list, int chunk_num);
 void	calc_mov(t_slist *list);
 int		intchr(int *tab, int size, int to_find);
 int		intschr(t_stack *stack, int to_find);
+
+//replace.c
+void	replace_numbers(t_slist *list);
+int		find_smallest(t_stack *stack, int last);
 
 //chunk.c
 void	chunk_move(t_slist *list, int chunk_size);
