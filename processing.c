@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:38:51 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/14 21:52:46 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/20 16:25:19 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ void	choose_process(t_slist *list)
 		process_small(list);
 	else if (list->stack_a->size <= 5)
 		process_mid(list);
-	else if (list->stack_a->size <= 100)
-		process_big(list);
 	else
-		process_rbig(list);
+		process_big(list);
 }
 
 /*

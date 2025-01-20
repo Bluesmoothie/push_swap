@@ -10,17 +10,15 @@ INCLUDE 	=	.
 
 #			PUSH_SWAP
 
-SRC_FILES	=	chunk_utils				\
-				chunk_utils2			\
-				chunk					\
-				free					\
+SRC_FILES	=	free					\
 				ft_atol					\
 				instructions_decoder	\
 				instructions			\
 				parse					\
 				processing				\
-				processor_utils			\
 				processor				\
+				processor_utils			\
+				quartile				\
 				replace					\
 				push_swap				\
 				sort					\

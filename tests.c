@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:47:43 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/17 19:25:49 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/20 17:02:24 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,13 @@ void	print_state(t_slist *list)
 	ft_printf("\n");
 }
 
-/*
-** Print a chunk
-*/
-void	print_chunk(int *chunk, int size)
+void	print_quartile_info(t_slist *list)
 {
-	int	i;
-
-	i = 0;
-	ft_printf("chunk = \n");
-	while (i < size)
-	{
-		ft_printf("[%d]%d\n", i, chunk[i]);
-		i++;
-	}
+	ft_printf("q_size: %d\n", list->q_size);
+	ft_printf("last_q_size: %d\n", list->last_q_size);
+	ft_printf("q_borders:\n");
+	ft_printf("1: %d - %d\n", list->q_borders[0][0], list->q_borders[0][1]);
+	ft_printf("2: %d - %d\n", list->q_borders[1][0], list->q_borders[1][1]);
+	ft_printf("3: %d - %d\n", list->q_borders[2][0], list->q_borders[2][1]);
+	ft_printf("4: %d - %d\n", list->q_borders[3][0], list->q_borders[3][1]);
 }

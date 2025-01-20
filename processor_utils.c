@@ -5,16 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 19:23:44 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/17 19:34:01 by ygille           ###   ########.fr       */
+/*   Created: 2025/01/20 16:28:54 by ygille            #+#    #+#             */
+/*   Updated: 2025/01/20 16:55:56 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
-** Calculate the best move to 
-*/
 void	calc_mov(t_slist *list)
 {
 	t_stack	*stack_a;
@@ -41,39 +38,4 @@ void	calc_mov(t_slist *list)
 		r_or_rr(stack_a, list->sorted[pos], list, XA);
 		inst_decoder(PA, list);
 	}
-}
-
-/*
-** Check if an int is in an array
-*/
-int	intchr(int *tab, int size, int to_find)
-{
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		if (tab[i] == to_find)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-/*
-** Check if an int is in a stack
-** return -1 if false and the index if true
-*/
-int	intschr(t_stack *stack, int to_find)
-{
-	int	i;
-
-	i = stack->minp;
-	while (i <= stack->maxp)
-	{
-		if (stack->stack[i] == to_find)
-			return (i);
-		i++;
-	}
-	return (-1);
 }
