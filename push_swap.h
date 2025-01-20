@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/20 17:01:44 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/20 19:40:03 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,11 @@ void	move_outer(t_slist *list);
 void	move_inner(t_slist *list);
 void	sort_outer(t_slist *list);
 void	sort_inner(t_slist *list);
+
+//quartile_utils.c
+int		find_nearest2(t_slist *list, int *upborders, int *downborders);
+int		find_nearest(t_slist *list, int *borders);
+int		up_is_nearest(t_slist *list, int up, int down);
 
 //replace.c
 void	replace_numbers(t_slist *list);

@@ -19,6 +19,7 @@ SRC_FILES	=	free					\
 				processor				\
 				processor_utils			\
 				quartile				\
+				quartile_utils			\
 				replace					\
 				push_swap				\
 				sort					\
