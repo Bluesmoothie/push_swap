@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:39:55 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/21 13:43:16 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/21 14:58:21 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,21 @@ int	up_is_nearest(t_slist *list, t_elem up, t_elem down)
 	if ((uptotop < downtotop && uptotop < downtobot)
 		|| (uptobot < downtotop && uptobot < downtobot))
 		return (1);
+	return (0);
+}
+
+int	nearest_between(t_slist *list, int up, int down)
+{
+	int	i;
+	int	j;
+
+	i = list->stack_b->minp;
+	j = list->stack_b->maxp;
+	while (list->stack_b->stack[i] != up)
+		i++;
+	while (list->stack_b->stack[j] != down)
+		j--;
+	if (i - list->stack_b->minp <= list->stack_b->maxp - j)
+		return(1);
 	return (0);
 }

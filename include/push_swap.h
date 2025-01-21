@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/21 13:30:43 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/21 16:18:10 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,13 @@ void	calc_mov(t_slist *list);
 void	calc_q_size(t_slist *list);
 void	move_outer(t_slist *list);
 void	move_inner(t_slist *list);
-void	sort_outer(t_slist *list);
-void	sort_inner(t_slist *list);
+void	sort_quartile(t_slist *list);
 
 //quartile_utils.c
 t_elem	find_nearest2(t_slist *list, int *upborders, int *downborders);
 int		find_nearest(t_slist *list, int *borders);
 int		up_is_nearest(t_slist *list, t_elem up, t_elem down);
+int		nearest_between(t_slist *list, int up, int down);
 
 //replace.c
 void	replace_numbers(t_slist *list);

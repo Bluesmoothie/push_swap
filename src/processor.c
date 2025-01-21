@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 18:00:55 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/21 13:43:57 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/21 16:22:39 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,11 @@ void	process_mid(t_slist *list)
 void	process_big(t_slist *list)
 {
 	replace_numbers(list);
-	print_state(list);
 	calc_q_size(list);
-	print_quartile_info(list);
-	move_outer(list);
 	move_inner(list);
-	print_state(list);
+	move_outer(list);
+	process_small(list);
+	sort_quartile(list);
+	// sort_outer(list);
+	// sort_inner(list);
 }
