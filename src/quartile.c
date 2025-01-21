@@ -6,12 +6,15 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:53:32 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/21 16:21:21 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/21 19:38:10 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+** Calculate the size of the quartiles
+*/
 void	calc_q_size(t_slist *list)
 {
 	list->q_size = list->stack_a->size / 4;
@@ -26,6 +29,9 @@ void	calc_q_size(t_slist *list)
 	list->q_borders[3][1] = list->q_size * 3 + list->last_q_size - 1;
 }
 
+/*
+** Move the numbers from the outer quartiles to the stack_b
+*/
 void	move_outer(t_slist *list)
 {
 	int		i;
@@ -42,6 +48,9 @@ void	move_outer(t_slist *list)
 	}
 }
 
+/*
+** Move the numbers from the inner quartiles to the stack_b
+*/
 void	move_inner(t_slist *list)
 {
 	int		i;
@@ -69,56 +78,32 @@ void	move_inner(t_slist *list)
 	}
 }
 
-// void	sort_outer(t_slist *list)
-// {
-// 	int	up;
-// 	int	down;
-
-// 	up = list->q_borders[0][1];
-// 	down = list->q_borders[3][0];
-// 	while (up >= list->q_borders[0][0] && down <= list->q_borders[3][1])
-// 	{
-// 		if (nearest_between(list, up, down))
-// 		{
-// 			r_or_rr(list->stack_b, up, list, XB);
-// 			inst_decoder(PA, list);
-// 			up--;
-// 		}
-// 		else
-// 		{
-// 			r_or_rr(list->stack_b, down, list, XB);
-// 			inst_decoder(PA, list);
-// 			inst_decoder(RA, list);
-// 			down++;
-// 		}
-// 	}
-// }
-
-// void	sort_inner(t_slist *list)
-// {
-// 	int	up;
-// 	int	down;
-
-// 	up = list->q_borders[1][1];
-// 	down = list->q_borders[2][0];
-// 	while (up >= list->q_borders[1][0] && down <= list->q_borders[2][1])
-// 	{
-// 		if (nearest_between(list, up, down))
-// 		{
-// 			r_or_rr(list->stack_b, up, list, XB);
-// 			inst_decoder(PA, list);
-// 			up--;
-// 		}
-// 		else
-// 		{
-// 			r_or_rr(list->stack_b, down, list, XB);
-// 			inst_decoder(PA, list);
-// 			inst_decoder(RA, list);
-// 			down++;
-// 		}
-// 	}
-// }
+/*
+** Sort the quartiles to the stack_a
+*/
 void	sort_quartile(t_slist *list)
 {
-	(void) list;
+	t_insert	to_insert;
+	int			i;
+	int			j;
+
+	i = 0;
+	j = 0;
+	while (list->stack_a->minp != 0)
+	{
+		to_insert = calc_less_op(list, j);
+		if (to_insert.cost == -1)
+		{
+			i = 0;
+			j++;
+		}
+		else
+		{
+		r_or_rr(list->stack_b, to_insert.value, list, XB);
+		r_or_rr(list->stack_a, to_insert.spot, list, XA);
+		inst_decoder(PA, list);
+		i++;
+		}
+	}
+	r_or_rr(list->stack_a, 0, list, XA);
 }

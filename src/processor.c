@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 18:00:55 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/21 16:22:39 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/21 19:36:21 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	process_mid(t_slist *list)
 }
 
 /*
-** Process a stack with more than 5 to 100 elements
+** Process a stack with more than 5 elements
 */
 void	process_big(t_slist *list)
 {
@@ -66,6 +66,4 @@ void	process_big(t_slist *list)
 	move_outer(list);
 	process_small(list);
 	sort_quartile(list);
-	// sort_outer(list);
-	// sort_inner(list);
 }

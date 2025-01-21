@@ -6,97 +6,102 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 18:39:55 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/21 14:58:21 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/21 19:37:27 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_elem	find_nearest2(t_slist *list, int *upborders, int *downborders)
+/*
+** Calculate the best move to insert a number from the stack_b
+*/
+t_insert	calc_less_op(t_slist *list, int quartile)
 {
-	t_elem	up;
-	t_elem	down;
-	int		*stack;
-
-	stack = list->stack_a->stack;
-	up.is_up = 1;
-	down.is_up = 0;
-	up.index = find_nearest(list, upborders);
-	down.index = find_nearest(list, downborders);
-	if (stack[up.index] >= upborders[0]
-		&& stack[up.index] <= upborders[1]
-		&& up.index >= list->stack_a->minp)
-		up.found = 1;
-	else
-		up.found = 0;
-	if (stack[down.index] >= downborders[0]
-		&& stack[down.index] <= downborders[1]
-		&& down.index >= list->stack_a->minp)
-		down.found = 1;
-	else
-		down.found = 0;
-	if ((up_is_nearest(list, up, down) && up.found) || !down.found)
-		return (up);
-	return (down);
-}
-
-int	find_nearest(t_slist *list, int *borders)
-{
-	int	i;
-	int	j;
-
-	i = list->stack_a->minp;
-	j = list->stack_a->maxp;
-	while (i <= list->stack_a->size / 2)
-	{
-		if (list->stack_a->stack[i] >= borders[0]
-			&& list->stack_a->stack[i] <= borders[1])
-			break ;
-		i++;
-	}
-	while (j >=	list->stack_a->size / 2)
-	{
-		if (list->stack_a->stack[j] >= borders[0]
-			&& list->stack_a->stack[j] <= borders[1])
-			break ;
-		j--;
-	}
-	if (i - list->stack_a->minp < list->stack_a->maxp - j
-		&& list->stack_a->stack[i] >= borders[0]
-		&& list->stack_a->stack[i] <= borders[1])
-		return (i);
-	return (j);
-}
-
-int	up_is_nearest(t_slist *list, t_elem up, t_elem down)
-{
-	int	uptotop;
-	int	uptobot;
-	int	downtotop;
-	int	downtobot;
-
-	uptotop = up.index - list->stack_a->minp;
-	uptobot = list->stack_a->maxp - up.index;
-	downtotop = down.index - list->stack_a->minp;
-	downtobot = list->stack_a->maxp - down.index;
-	if ((uptotop < downtotop && uptotop < downtobot)
-		|| (uptobot < downtotop && uptobot < downtobot))
-		return (1);
-	return (0);
-}
-
-int	nearest_between(t_slist *list, int up, int down)
-{
-	int	i;
-	int	j;
+	int			i;
+	t_insert	insert;
+	t_insert	tmp;
 
 	i = list->stack_b->minp;
-	j = list->stack_b->maxp;
-	while (list->stack_b->stack[i] != up)
+	insert.cost = -1;
+	while (i <= list->stack_b->maxp)
+	{
+		if (list->stack_b->stack[i] >= list->q_borders[quartile][0]
+			&& list->stack_b->stack[i] <= list->q_borders[quartile][1])
+		{
+			tmp.value = list->stack_b->stack[i];
+			tmp.spot = find_spot(list->stack_a, tmp.value);
+			tmp.cost = best_move(list->stack_a, tmp.spot)
+				+ best_move(list->stack_b, tmp.value);
+			if (insert.cost == -1)
+				insert = tmp;
+			else if (tmp.cost < insert.cost)
+				insert = tmp;
+		}
 		i++;
-	while (list->stack_b->stack[j] != down)
-		j--;
-	if (i - list->stack_b->minp <= list->stack_b->maxp - j)
-		return(1);
-	return (0);
+	}
+	return (insert);
+}
+
+/*
+** Find the best spot to insert a number from the stack_b
+*/
+int	find_spot(t_stack *stack, int value)
+{
+	int	i;
+	int	j;
+
+	i = value + 1;
+	while (i <= stack->maxp)
+	{
+		j = stack->minp;
+		while (j <= stack->maxp)
+		{
+			if (stack->stack[j] == i)
+				return (stack->stack[j]);
+			j++;
+		}
+		i++;
+	}
+	return (find_max_on_bot(stack));
+}
+
+/*
+** Find what value need to be on the top of the stack
+** to get the max value at the bottom
+*/
+int	find_max_on_bot(t_stack *stack)
+{
+	int	i;
+	int	maxi;
+
+	i = stack->minp;
+	maxi = i;
+	while (i <= stack->maxp)
+	{
+		if (stack->stack[i] > stack->stack[maxi])
+			maxi = i;
+		i++;
+	}
+	if (maxi == stack->maxp)
+		return (stack->stack[stack->minp]);
+	else
+		return (stack->stack[maxi + 1]);
+}
+
+/*
+** Calculate the cost of the best move to insert a number
+*/
+int	best_move(t_stack *stack, int value)
+{
+	int	cost;
+	int	pos;
+
+	pos = stack->minp;
+	while (stack->stack[pos] != value)
+		pos++;
+	if (pos - stack->minp < stack->maxp - pos)
+		cost = pos - stack->minp;
+	else
+		cost = stack->maxp - pos;
+	return (cost);
 }
