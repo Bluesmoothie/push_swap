@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:53:32 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/21 19:38:10 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/21 19:55:18 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,10 @@ void	sort_quartile(t_slist *list)
 		}
 		else
 		{
-		r_or_rr(list->stack_b, to_insert.value, list, XB);
-		r_or_rr(list->stack_a, to_insert.spot, list, XA);
-		inst_decoder(PA, list);
-		i++;
+			r_or_rr(list->stack_b, to_insert.value, list, XB);
+			r_or_rr(list->stack_a, to_insert.spot, list, XA);
+			inst_decoder(PA, list);
+			i++;
 		}
 	}
 	r_or_rr(list->stack_a, 0, list, XA);
