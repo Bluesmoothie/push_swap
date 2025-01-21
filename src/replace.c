@@ -6,12 +6,15 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 19:47:08 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/20 16:38:39 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/21 19:38:21 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+** Replace the numbers in the stack_a by their index in the sorted array
+*/
 void	replace_numbers(t_slist *list)
 {
 	int	i;

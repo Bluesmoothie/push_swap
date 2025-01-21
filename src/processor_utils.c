@@ -6,12 +6,15 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:28:54 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/20 16:55:56 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/21 19:36:08 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+** Calculate the best move to sort 3 elements
+*/
 void	calc_mov(t_slist *list)
 {
 	t_stack	*stack_a;
