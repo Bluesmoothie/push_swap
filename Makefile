@@ -5,8 +5,8 @@ NAME		=   push_swap
 #			GCC
 
 CC			=	clang
-CFLAGS		=	-g -Wall -Wextra -Werror -I $(INCLUDE) -I $(LIBFT)/includes
-INCLUDE 	=	.
+CFLAGS		=	-g -Wall -Wextra -Werror $(INCLUDE)
+INCLUDE 	=	-I include -I $(LIBFT)/includes
 
 #			PUSH_SWAP
 
@@ -25,12 +25,13 @@ SRC_FILES	=	free					\
 				sort					\
 				tests					\
 
-SRC 		= 	$(addsuffix .c, $(SRC_FILES))
+SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 #			COMMON
 
 OBJ_DIR		=	obj/
+SRC_DIR		=	src/
 
 #			LIBFT
 
@@ -50,7 +51,7 @@ $(LIBFT_A)		:
 $(OBJ_DIR)		:
 				mkdir $(OBJ_DIR)
 
-$(OBJ_DIR)%.o	: 	%.c push_swap.h
+$(OBJ_DIR)%.o	: 	$(SRC_DIR)%.c include/push_swap.h
 				$(CC) $(CFLAGS) -c $< -o $@
 
 clean			:
