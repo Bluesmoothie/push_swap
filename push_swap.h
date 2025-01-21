@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/20 19:40:03 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/21 13:30:43 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ typedef struct s_slist
 	int		q_borders[4][2];
 	int		*sorted;
 }	t_slist;
+
+typedef struct s_elem
+{
+	int	index;
+	int	found;
+	int	is_up;
+}	t_elem;
 
 enum e_instructions
 {
@@ -89,7 +96,6 @@ t_stack	*alt_parse_args(int	*argc, char *arg, t_slist *list);
 t_stack	*fill_stack(char **split, int size, t_slist *list);
 t_stack	*init_stack(int size, t_slist *list);
 
-
 //processing.c
 void	choose_process(t_slist *list);
 int		is_sorted(t_slist *list);
@@ -111,9 +117,9 @@ void	sort_outer(t_slist *list);
 void	sort_inner(t_slist *list);
 
 //quartile_utils.c
-int		find_nearest2(t_slist *list, int *upborders, int *downborders);
+t_elem	find_nearest2(t_slist *list, int *upborders, int *downborders);
 int		find_nearest(t_slist *list, int *borders);
-int		up_is_nearest(t_slist *list, int up, int down);
+int		up_is_nearest(t_slist *list, t_elem up, t_elem down);
 
 //replace.c
 void	replace_numbers(t_slist *list);

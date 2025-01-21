@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:53:32 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/20 19:31:49 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/21 13:43:21 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,50 +28,36 @@ void	calc_q_size(t_slist *list)
 
 void	move_outer(t_slist *list)
 {
-	int	pos;
-	int	i;
+	t_elem	elem;
+	int		i;
 
+	ft_printf("outer\n");
 	i = 0;
 	while (i < list->q_size + list->last_q_size)
 	{
-		pos = find_nearest2(list, list->q_borders[0], list->q_borders[3]);
-		if (pos < 0)
-		{
-			pos *= -1;
-			r_or_rr(list->stack_a, list->stack_a->stack[pos], list, XA);
-			inst_decoder(PB, list);
+		elem = find_nearest2(list, list->q_borders[0], list->q_borders[3]);
+		r_or_rr(list->stack_a, list->stack_a->stack[elem.index], list, XA);
+		inst_decoder(PB, list);
+		if (elem.is_up)
 			inst_decoder(RB, list);
-		}
-		else
-		{
-			r_or_rr(list->stack_a, list->stack_a->stack[pos], list, XA);
-			inst_decoder(PB, list);
-		}
 		i++;
 	}
 }
 
 void	move_inner(t_slist *list)
 {
-	int	pos;
-	int	i;
+	t_elem	elem;
+	int		i;
 
+	ft_printf("inner\n");
 	i = 0;
 	while (i < list->q_size * 2)
 	{
-		pos = find_nearest2(list, list->q_borders[1], list->q_borders[2]);
-		if (pos < 0)
-		{
-			pos *= -1;
-			r_or_rr(list->stack_a, list->stack_a->stack[pos], list, XA);
-			inst_decoder(PB, list);
+		elem = find_nearest2(list, list->q_borders[1], list->q_borders[2]);
+		r_or_rr(list->stack_a, list->stack_a->stack[elem.index], list, XA);
+		inst_decoder(PB, list);
+		if (elem.is_up)
 			inst_decoder(RB, list);
-		}
-		else
-		{
-			r_or_rr(list->stack_a, list->stack_a->stack[pos], list, XA);
-			inst_decoder(PB, list);
-		}
 		i++;
 	}
 }

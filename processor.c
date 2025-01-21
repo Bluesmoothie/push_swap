@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 18:00:55 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/20 19:32:43 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/21 13:43:57 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	process_big(t_slist *list)
 	print_state(list);
 	calc_q_size(list);
 	print_quartile_info(list);
+	move_outer(list);
 	move_inner(list);
-	// move_outer(list);
 	print_state(list);
 }
