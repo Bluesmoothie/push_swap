@@ -1,4 +1,4 @@
-.PHONY	:	clean fclean re all
+.PHONY	:	clean fclean re all bonus
 
 NAME		=   push_swap
 
@@ -25,13 +25,18 @@ SRC_FILES	=	free					\
 				sort					\
 				tests					\
 
-SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES))
+BONUS_SRC_FILES	=	checker_bonus		\
+
+SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
+BONUS_SRC 	= 	$(addprefix $(BONUS_SRC_DIR), $(addsuffix .c, $(BONUS_SRC_FILES)))
+BONUS_OBJ 	= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(BONUS_SRC_FILES)))
 
 #			COMMON
 
 OBJ_DIR		=	obj/
 SRC_DIR		=	src/
+BONUS_SRC_DIR		=	src_bonus/
 
 #			LIBFT
 
@@ -41,6 +46,11 @@ LIBFT_A		=	$(LIBFT)/libft_ex.a
 #			RULES
 
 all				:	$(NAME)
+
+bonus			:	checker
+
+checker			:	$(LIBFT_A) $(OBJ_DIR) $(OBJ) $(BONUS_OBJ)
+				$(CC) $(CFLAGS) -D BONUS_MODE=1 $(OBJ) $(BONUS_OBJ) -L$(LIBFT) -lft_ex -o checker
 
 $(NAME)			:	$(LIBFT_A) $(OBJ_DIR) $(OBJ)
 				$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT) -lft_ex -o $(NAME)
@@ -52,6 +62,9 @@ $(OBJ_DIR)		:
 				mkdir $(OBJ_DIR)
 
 $(OBJ_DIR)%.o	: 	$(SRC_DIR)%.c include/push_swap.h
+				$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)%.o	: 	$(BONUS_SRC_DIR)%.c include/push_swap.h include/push_swap_bonus.h
 				$(CC) $(CFLAGS) -c $< -o $@
 
 clean			:

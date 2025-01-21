@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/21 19:54:16 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/21 20:28:16 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include <libft.h>
 # include <ft_printf.h>
 # include <limits.h>
+
+# ifndef BONUS_MODE
+#  define BONUS_MODE 0
+# endif
 
 typedef struct s_stack
 {
@@ -133,5 +137,12 @@ int			*dup_stack(int *stack, int size, t_slist *list);
 void		print_state(t_slist *list);
 void		print_quartile_info(t_slist *list);
 void		print_insert_info(t_slist *list, t_insert insert);
+
+//bonus
+# if BONUS_MODE
+
+int			bonus(int argc, char *argv[]);
+
+# endif
 
 #endif

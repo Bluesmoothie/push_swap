@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:13 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/21 19:51:29 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/21 20:28:04 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 int	main(int argc, char **argv)
 {
 	t_slist	*list;
-
+#if BONUS_MODE
+		return (bonus(argc, argv));
+#endif
 	if (argc < 2)
 		return (1);
 	list = list_init();

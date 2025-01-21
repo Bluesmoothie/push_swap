@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:40:48 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/01 14:12:59 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/21 20:13:36 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	inst_decoder(int inst, t_slist *list)
 		inst_rev_rotate(list->stack_b);
 	else if (inst == RRR)
 		inst_rev_rotate_both(list);
-	inst_print(inst);
+	if (!BONUS_MODE)
+		inst_print(inst);
 }
 
 void	inst_swap_both(t_slist *list)
