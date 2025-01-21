@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/21 19:33:19 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/21 19:54:16 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ t_slist		*list_init(void);
 
 //free.c
 void		free_stack(t_stack *stack);
+void		free_split(char **split);
 
 //ft_atol.c
 long		ft_atol(const char *nptr);
@@ -90,7 +91,7 @@ void		inst_rotate(t_stack *stack);
 void		inst_rev_rotate(t_stack *stack);
 
 //parse.c
-t_stack		*parse_args(int argc, char **argv, t_slist *list);
+void		*parse_args(int argc, char **argv, t_slist *list);
 int			verify_arg(char *arg, t_stack *stack);
 t_stack		*alt_parse_args(int	*argc, char *arg, t_slist *list);
 t_stack		*fill_stack(char **split, int size, t_slist *list);

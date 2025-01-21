@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 19:26:49 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/01 14:11:44 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/21 19:53:33 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 /*
 ** Parse the arguments and fill the stack
 */
-t_stack	*parse_args(int argc, char **argv, t_slist *list)
+void	*parse_args(int argc, char **argv, t_slist *list)
 {
 	t_stack	*stack;
 	int		i;
 
-	stack = init_stack(argc - 1, list);
+	list->stack_a = init_stack(argc - 1, list);
+	stack = list->stack_a;
 	i = 0;
 	while (i < argc - 1)
 	{
@@ -83,7 +84,6 @@ t_stack	*alt_parse_args(int	*argc, char *arg, t_slist *list)
 	while (split[i])
 		i++;
 	stack = fill_stack(split, i, list);
-	free(split);
 	*argc = i + 1;
 	return (stack);
 }
@@ -96,14 +96,17 @@ t_stack	*fill_stack(char **split, int size, t_slist *list)
 	t_stack	*stack;
 	int		i;
 
-	stack = init_stack(size, list);
+	list->stack_a = init_stack(size, list);
+	stack = list->stack_a;
 	i = 0;
 	while (i < size)
 	{
 		if (verify_arg(split[i], stack))
+		{
+			free_split(split);
 			error(list, 1);
+		}
 		stack->stack[i] = ft_atoi(split[i]);
-		free(split[i]);
 		if (i == 0 || stack->stack[i] > stack->maxval)
 			stack->maxval = stack->stack[i];
 		if (i == 0 || stack->stack[i] < stack->minval)
@@ -112,6 +115,7 @@ t_stack	*fill_stack(char **split, int size, t_slist *list)
 		i++;
 		stack->size = i;
 	}
+	free_split(split);
 	return (stack);
 }
 
