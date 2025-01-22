@@ -39,13 +39,14 @@ BONUS_SRC_FILES	=	checker_bonus					\
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 BONUS_SRC 	= 	$(addprefix $(BONUS_SRC_DIR), $(addsuffix .c, $(BONUS_SRC_FILES)))
-BONUS_OBJ 	= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(BONUS_SRC_FILES)))
+BONUS_OBJ 	= 	$(addprefix $(BONUS_OBJ_DIR), $(addsuffix .o, $(BONUS_SRC_FILES)))
 
 #			COMMON
 
 OBJ_DIR		=	obj/
 SRC_DIR		=	src/
 BONUS_SRC_DIR		=	src_bonus/
+BONUS_OBJ_DIR		=	obj_bonus/
 
 #			LIBFT
 
@@ -58,7 +59,7 @@ all				:	$(NAME)
 
 bonus			:	checker
 
-checker			:	$(LIBFT_A) $(OBJ_DIR) $(BONUS_OBJ)
+checker			:	$(LIBFT_A) $(BONUS_OBJ_DIR) $(BONUS_OBJ)
 				$(CC) $(CFLAGS) $(BONUS_OBJ) -L$(LIBFT) -lft_ex -o checker
 
 $(NAME)			:	$(LIBFT_A) $(OBJ_DIR) $(OBJ)
@@ -70,14 +71,18 @@ $(LIBFT_A)		:
 $(OBJ_DIR)		:
 				mkdir $(OBJ_DIR)
 
+$(BONUS_OBJ_DIR)		:
+				mkdir $(BONUS_OBJ_DIR)
+
 $(OBJ_DIR)%.o	: 	$(SRC_DIR)%.c include/push_swap.h
 				$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_DIR)%.o	: 	$(BONUS_SRC_DIR)%.c include/push_swap.h include/push_swap_bonus.h
+$(BONUS_OBJ_DIR)%.o	: 	$(BONUS_SRC_DIR)%.c include/push_swap.h include/push_swap_bonus.h
 				$(CC) $(CFLAGS) -c $< -o $@
 
 clean			:
 				$(RM) -rf $(OBJ_DIR)
+				$(RM) -rf $(BONUS_OBJ_DIR)
 				$(MAKE) clean -s -C $(LIBFT)
 
 fclean			:	clean
