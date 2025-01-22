@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 11:40:48 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/22 15:01:31 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/22 15:21:44 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,3 @@ void	inst_rev_rotate_both(t_slist *list)
 	inst_rev_rotate(list->stack_a);
 	inst_rev_rotate(list->stack_b);
 }
-
