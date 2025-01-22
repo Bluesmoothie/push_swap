@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/22 13:30:31 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/22 18:51:17 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,9 @@ void		replace_numbers(t_slist *list);
 //sort.c
 int			*sort(t_stack *stack, t_slist *list);
 int			*dup_stack(int *stack, int size, t_slist *list);
+
+//verify.c
+int			valid_stack(t_stack *stack);
 
 //tests.c
 void		print_state(t_slist *list);

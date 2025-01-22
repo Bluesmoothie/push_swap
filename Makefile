@@ -10,21 +10,21 @@ INCLUDE 	=	-I include -I $(LIBFT)/includes
 
 #			PUSH_SWAP
 
-SRC_FILES	=	free					\
-				ft_atol					\
-				instructions_decoder	\
-				instructions			\
-				parse					\
-				processing				\
-				processor				\
-				processor_utils			\
-				quartile				\
-				quartile_utils			\
-				replace					\
-				push_swap				\
-				sort					\
-				verify					\
-				tests					\
+SRC_FILES	=		free							\
+					ft_atol							\
+					instructions_decoder			\
+					instructions					\
+					parse							\
+					processing						\
+					processor						\
+					processor_utils					\
+					quartile						\
+					quartile_utils					\
+					replace							\
+					push_swap						\
+					sort							\
+					verify							\
+					tests							\
 
 BONUS_SRC_FILES	=	checker_bonus					\
 					free_bonus						\

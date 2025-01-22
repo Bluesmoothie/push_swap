@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 19:26:49 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/21 19:53:33 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/22 18:48:34 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	*parse_args(int argc, char **argv, t_slist *list)
 		i++;
 		stack->size = i;
 	}
+	if (!valid_stack(stack))
+		error(list, 1);
 	return (stack);
 }
 
