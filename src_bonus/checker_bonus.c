@@ -6,13 +6,13 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 20:08:30 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/21 20:22:22 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/22 13:33:24 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
 
-int	bonus(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_slist	*list;
 
@@ -31,4 +31,43 @@ int	bonus(int argc, char *argv[])
 		ft_putstr_fd("KO\n", 1);
 	error(list, 0);
 	return (0);
+}
+
+/*
+** Free the list and exit
+** display an error message if error is not 0
+*/
+void	error(t_slist *list, int error)
+{
+	if (list)
+	{
+		if (list->stack_a)
+			free_stack(list->stack_a);
+		if (list->stack_b)
+			free_stack(list->stack_b);
+		if (list->sorted)
+			free(list->sorted);
+		free(list);
+	}
+	if (error)
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit(error);
+	}
+}
+
+/*
+** Initialize the list structure
+*/
+t_slist	*list_init(void)
+{
+	t_slist	*list;
+
+	list = malloc(sizeof(t_slist));
+	if (!list)
+		error (NULL, 1);
+	list->stack_a = NULL;
+	list->stack_b = NULL;
+	list->sorted = NULL;
+	return (list);
 }

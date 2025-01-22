@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_bonus.h                                  :+:      :+:    :+:   */
+/*   processing_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 20:08:55 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/22 13:30:34 by ygille           ###   ########.fr       */
+/*   Created: 2024/12/05 11:38:51 by ygille            #+#    #+#             */
+/*   Updated: 2025/01/22 13:36:27 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_BONUS_H
-# define PUSH_SWAP_BONUS_H
+#include "push_swap_bonus.h"
 
-# include "push_swap.h"
+/*
+** Check if the stack is sorted
+*/
+int	is_sorted(t_slist *list)
+{
+	int	i;
 
-#endif
+	i = 0;
+	while (i <= list->stack_a->maxp)
+	{
+		if (list->stack_a->stack[i] != list->sorted[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}

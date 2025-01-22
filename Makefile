@@ -26,6 +26,8 @@ SRC_FILES	=	free					\
 				tests					\
 
 BONUS_SRC_FILES	=	checker_bonus		\
+					parse_bonus			\
+					processing_bonus	\
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
@@ -49,8 +51,8 @@ all				:	$(NAME)
 
 bonus			:	checker
 
-checker			:	$(LIBFT_A) $(OBJ_DIR) $(OBJ) $(BONUS_OBJ)
-				$(CC) $(CFLAGS) -D BONUS_MODE=1 $(OBJ) $(BONUS_OBJ) -L$(LIBFT) -lft_ex -o checker
+checker			:	$(LIBFT_A) $(OBJ_DIR) $(BONUS_OBJ)
+				$(CC) $(CFLAGS) $(BONUS_OBJ) -L$(LIBFT) -lft_ex -o checker
 
 $(NAME)			:	$(LIBFT_A) $(OBJ_DIR) $(OBJ)
 				$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT) -lft_ex -o $(NAME)
