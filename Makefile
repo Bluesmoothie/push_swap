@@ -1,4 +1,4 @@
-.PHONY	:	clean fclean re all bonus
+.PHONY	:	clean fclean re all bonus FORCE
 
 NAME		=   push_swap
 
@@ -23,6 +23,7 @@ SRC_FILES	=	free					\
 				replace					\
 				push_swap				\
 				sort					\
+				verify					\
 				tests					\
 
 BONUS_SRC_FILES	=	checker_bonus					\
@@ -65,8 +66,10 @@ checker			:	$(LIBFT_A) $(BONUS_OBJ_DIR) $(BONUS_OBJ)
 $(NAME)			:	$(LIBFT_A) $(OBJ_DIR) $(OBJ)
 				$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT) -lft_ex -o $(NAME)
 
-$(LIBFT_A)		:
+$(LIBFT_A)		:	FORCE
 				$(MAKE) -C $(LIBFT)
+
+FORCE			:
 
 $(OBJ_DIR)		:
 				mkdir $(OBJ_DIR)
