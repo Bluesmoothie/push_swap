@@ -28,7 +28,8 @@ SRC_FILES	=	free					\
 BONUS_SRC_FILES	=	checker_bonus			\
 					free_bonus				\
 					ft_atol_bonus			\
-					get_operations_bonus	\
+					operations_bonus		\
+					operations_decode_bonus	\
 					parse_bonus				\
 					processing_bonus		\
 					sort_bonus				\
