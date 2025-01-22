@@ -25,14 +25,16 @@ SRC_FILES	=	free					\
 				sort					\
 				tests					\
 
-BONUS_SRC_FILES	=	checker_bonus			\
-					free_bonus				\
-					ft_atol_bonus			\
-					operations_bonus		\
-					operations_decode_bonus	\
-					parse_bonus				\
-					processing_bonus		\
-					sort_bonus				\
+BONUS_SRC_FILES	=	checker_bonus					\
+					free_bonus						\
+					ft_atol_bonus					\
+					instructions_bonus				\
+					instructions_decoder_bonus		\
+					operations_bonus				\
+					operations_decode_bonus			\
+					parse_bonus						\
+					processing_bonus				\
+					sort_bonus						\
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))

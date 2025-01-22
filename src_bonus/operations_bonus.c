@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:45:10 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/22 14:06:21 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/22 15:11:47 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,44 +37,22 @@ void	apply_operations(t_slist *list, char *operations)
 	int	op_code;
 
 	i = 0;
-	while (operations[i])
+	while (operations[i] != '\0')
 	{
 		op_code = -1;
 		if (operations[i] == 's')
-		{
-			if (operations[i + 1] == 'a')
-				op_code = SA;
-			else if (operations[i + 1] == 'b')
-				op_code = SB;
-			else if (operations[i + 1] == 's')
-				op_code = SS;
-		}
+			op_code = decode_swap(&operations[i]);
 		else if (operations[i] == 'p')
-		{
-			if (operations[i + 1] == 'a')
-				op_code = PA;
-			else if (operations[i + 1] == 'b')
-				op_code = PB;
-		}
-		else if (operations[i] == 'r')
-		{
-			if (operations[i + 1] == 'a')
-				op_code = RA;
-			else if (operations[i + 1] == 'b')
-				op_code = RB;
-			else if (operations[i + 1] == 'r' && operations[i + 2] == '\n')
-				op_code = RR;
-		}
+			op_code = decode_push(&operations[i]);
+		else if (operations[i] == 'r' && operations[i + 1] != 'r')
+			op_code = decode_rotate(&operations[i]);
 		else if (operations[i] == 'r' && operations[i + 1] == 'r')
-		{
-			if (operations[i + 2] == 'a')
-				op_code = RRA;
-			else if (operations[i + 2] == 'b')
-				op_code = RRB;
-			else if (operations[i + 2] == 'r')
-				op_code = RRR;
-		}
+			op_code = decode_reverse_rotate(&operations[i]);
 		if (op_code == -1)
 			error(list, 1);
+		inst_decoder(op_code, list);
+		i = i + 3;
+		if (op_code > 33)
+			i++;
 	}
 }

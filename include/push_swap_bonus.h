@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 20:08:55 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/22 14:07:43 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/22 15:03:10 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,14 @@
 # include "push_swap.h"
 # include "get_next_line.h"
 
-//get_operations_bonus
+//operations_bonus.c
 char	*get_operations(void);
 void	apply_operations(t_slist *list, char *operations);
+
+//operations_decode_bonus.c
+int		decode_swap(char *operations);
+int		decode_push(char *operations);
+int		decode_rotate(char *operations);
+int		decode_reverse_rotate(char *operations);
 
 #endif
