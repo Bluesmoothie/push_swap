@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 19:26:49 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/22 13:36:24 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/23 14:09:06 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,13 @@ int	verify_arg(char *arg, t_stack *stack)
 	long	num;
 
 	i = 0;
+	if (ft_strlen(arg) > 11 || ft_strlen(arg) == 0)
+		return (1);
+	if (arg[i] == '-' && ft_isdigit(arg[i + 1]))
+		i++;
 	while (arg[i])
 	{
-		if (!ft_isdigit(arg[i]) && arg[i] != '-')
+		if (!ft_isdigit(arg[i]))
 			return (1);
 		i++;
 	}
@@ -83,6 +87,11 @@ t_stack	*alt_parse_args(int	*argc, char *arg, t_slist *list)
 	i = 0;
 	while (split[i])
 		i++;
+	if (i == 0)
+	{
+		free_split(split);
+		error(list, 1);
+	}
 	stack = fill_stack(split, i, list);
 	*argc = i + 1;
 	return (stack);

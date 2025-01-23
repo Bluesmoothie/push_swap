@@ -23,7 +23,6 @@ SRC_FILES	=		free							\
 					replace							\
 					push_swap						\
 					sort							\
-					verify							\
 					tests							\
 
 BONUS_SRC_FILES	=	checker_bonus					\
