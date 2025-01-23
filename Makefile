@@ -1,4 +1,4 @@
-.PHONY	:	clean fclean re all bonus FORCE
+.PHONY	:	clean fclean re all bonus FORCE norme
 
 NAME		=   push_swap
 
@@ -81,6 +81,9 @@ $(OBJ_DIR)%.o	: 	$(SRC_DIR)%.c include/push_swap.h
 
 $(BONUS_OBJ_DIR)%.o	: 	$(BONUS_SRC_DIR)%.c include/push_swap.h include/push_swap_bonus.h
 				$(CC) $(CFLAGS) -c $< -o $@
+
+norme			:
+				norminette $(SRC_DIR) $(BONUS_SRC_DIR) include
 
 clean			:
 				$(RM) -rf $(OBJ_DIR)
