@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:53:32 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/21 19:55:18 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/27 14:07:11 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,25 +84,19 @@ void	move_inner(t_slist *list)
 void	sort_quartile(t_slist *list)
 {
 	t_insert	to_insert;
-	int			i;
 	int			j;
 
-	i = 0;
 	j = 0;
 	while (list->stack_a->minp != 0)
 	{
 		to_insert = calc_less_op(list, j);
 		if (to_insert.cost == -1)
-		{
-			i = 0;
 			j++;
-		}
 		else
 		{
 			r_or_rr(list->stack_b, to_insert.value, list, XB);
 			r_or_rr(list->stack_a, to_insert.spot, list, XA);
 			inst_decoder(PA, list);
-			i++;
 		}
 	}
 	r_or_rr(list->stack_a, 0, list, XA);
