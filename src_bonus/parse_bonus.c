@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 19:26:49 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/23 14:09:06 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/27 14:17:20 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	verify_arg(char *arg, t_stack *stack)
 	if (num > INT_MAX || num < INT_MIN)
 		return (1);
 	i = 0;
-	while (i <= stack->maxp && stack->maxp > 0)
+	while (i <= stack->maxp && stack->maxp >= 0)
 	{
 		if (stack->stack[i] == ft_atoi(arg))
 			return (1);
@@ -143,7 +143,7 @@ t_stack	*init_stack(int size, t_slist *list)
 		error(list, 1);
 	stack->size = size;
 	stack->minp = 0;
-	stack->maxp = 0;
+	stack->maxp = -1;
 	stack->maxval = 0;
 	stack->minval = 0;
 	return (stack);
