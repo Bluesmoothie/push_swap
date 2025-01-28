@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 18:17:10 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/23 14:01:08 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/28 17:03:03 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,8 @@ void		r_or_rr(t_stack *stack, int to_find, t_slist *list, int stack_mask);
 void		process_small(t_slist *list);
 void		process_mid(t_slist *list);
 void		process_big(t_slist *list);
-
-//processor_utils.c
-void		calc_mov(t_slist *list);
+void		sort_mid(t_slist *list);
+t_insert	mid_calc_less_op(t_slist *list);
 
 //quartile.c
 void		calc_q_size(t_slist *list);
