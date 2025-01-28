@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:45:10 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/22 15:11:47 by ygille           ###   ########.fr       */
+/*   Updated: 2025/01/28 13:17:43 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	apply_operations(t_slist *list, char *operations)
 	int	op_code;
 
 	i = 0;
+	if (!operations)
+		return ;
 	while (operations[i] != '\0')
 	{
 		op_code = -1;
