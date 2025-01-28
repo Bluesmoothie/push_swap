@@ -1,23 +1,29 @@
 .PHONY	:	clean fclean re all bonus FORCE norme
 
-NAME		=   push_swap
+NAME			=   push_swap
 
 #			GCC
 
-CC			=	clang
-CFLAGS		=	-g -Wall -Wextra -Werror $(INCLUDE)
-INCLUDE 	=	-I include -I $(LIBFT)/includes
+CC				=	cc
+CFLAGS			=	-Wall -Wextra -Werror -MMD -MP $(INCLUDE)
+INCLUDE 		=	-I include -I $(LIBFT)/includes
+
+#			COMMON
+
+BUILD_DIR		=	.build/
+BONUS_BUILD_DIR	=	.build_bonus/
+SRC_DIR			=	src/
+BONUS_SRC_DIR	=	src_bonus/
 
 #			PUSH_SWAP
 
-SRC_FILES	=		free							\
+SRC_FILES		=	free							\
 					ft_atol							\
 					instructions_decoder			\
 					instructions					\
 					parse							\
 					processing						\
 					processor						\
-					processor_utils					\
 					quartile						\
 					quartile_utils					\
 					replace							\
@@ -36,17 +42,13 @@ BONUS_SRC_FILES	=	checker_bonus					\
 					processing_bonus				\
 					sort_bonus						\
 
-SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
-OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
-BONUS_SRC 	= 	$(addprefix $(BONUS_SRC_DIR), $(addsuffix .c, $(BONUS_SRC_FILES)))
-BONUS_OBJ 	= 	$(addprefix $(BONUS_OBJ_DIR), $(addsuffix .o, $(BONUS_SRC_FILES)))
+SRC 			= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
+OBJ 			= 	$(addprefix $(BUILD_DIR), $(addsuffix .o, $(SRC_FILES)))
+DEPS			=	$(addprefix $(BUILD_DIR), $(addsuffix .d, $(SRC_FILES)))
+BONUS_SRC 		= 	$(addprefix $(BONUS_SRC_DIR), $(addsuffix .c, $(BONUS_SRC_FILES)))
+BONUS_OBJ 		= 	$(addprefix $(BONUS_BUILD_DIR), $(addsuffix .o, $(BONUS_SRC_FILES)))
+BONUS_DEPS		=	$(addprefix $(BONUS_BUILD_DIR), $(addsuffix .d, $(BONUS_SRC_FILES)))
 
-#			COMMON
-
-OBJ_DIR		=	obj/
-SRC_DIR		=	src/
-BONUS_SRC_DIR		=	src_bonus/
-BONUS_OBJ_DIR		=	obj_bonus/
 
 #			LIBFT
 
@@ -55,43 +57,46 @@ LIBFT_A		=	$(LIBFT)/libft_ex.a
 
 #			RULES
 
-all				:	$(NAME)
+all						:	$(NAME)
 
-bonus			:	checker
+$(NAME)					:	$(LIBFT_A) $(BUILD_DIR) $(OBJ)
+						$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT) -lft_ex -o $(NAME)
 
-checker			:	$(LIBFT_A) $(BONUS_OBJ_DIR) $(BONUS_OBJ)
-				$(CC) $(CFLAGS) $(BONUS_OBJ) -L$(LIBFT) -lft_ex -o checker
+bonus					:	checker
 
-$(NAME)			:	$(LIBFT_A) $(OBJ_DIR) $(OBJ)
-				$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT) -lft_ex -o $(NAME)
+checker					:	$(LIBFT_A) $(BONUS_BUILD_DIR) $(BONUS_OBJ)
+						$(CC) $(CFLAGS) $(BONUS_OBJ) -L$(LIBFT) -lft_ex -o checker
 
-$(LIBFT_A)		:	FORCE
-				$(MAKE) -C $(LIBFT)
+$(LIBFT_A)				:	FORCE
+						$(MAKE) -C $(LIBFT)
 
-FORCE			:
+FORCE					:
 
-$(OBJ_DIR)		:
-				mkdir $(OBJ_DIR)
+$(BUILD_DIR)			:
+						mkdir -p $(BUILD_DIR)
 
-$(BONUS_OBJ_DIR)		:
-				mkdir $(BONUS_OBJ_DIR)
+$(BUILD_DIR)%.o			: 	$(SRC_DIR)%.c
+						$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_DIR)%.o	: 	$(SRC_DIR)%.c include/push_swap.h
-				$(CC) $(CFLAGS) -c $< -o $@
+-include $(DEPS)
 
-$(BONUS_OBJ_DIR)%.o	: 	$(BONUS_SRC_DIR)%.c include/push_swap.h include/push_swap_bonus.h
-				$(CC) $(CFLAGS) -c $< -o $@
+$(BONUS_BUILD_DIR)		:
+						mkdir -p $(BONUS_BUILD_DIR)
 
-norme			:
-				norminette $(SRC_DIR) $(BONUS_SRC_DIR) include
+$(BONUS_BUILD_DIR)%.o	: 	$(BONUS_SRC_DIR)%.c
+						$(CC) $(CFLAGS) -c $< -o $@
 
-clean			:
-				$(RM) -rf $(OBJ_DIR)
-				$(RM) -rf $(BONUS_OBJ_DIR)
-				$(MAKE) clean -s -C $(LIBFT)
+-include $(BONUS_DEPS)
 
-fclean			:	clean
-				$(RM) -f $(NAME)
-				$(MAKE) fclean -s -C $(LIBFT)
+norme					:
+						norminette $(SRC_DIR) $(BONUS_SRC_DIR) include
 
-re				:	fclean all
+clean					:
+						rm -rf $(BUILD_DIR) $(BONUS_BUILD_DIR)
+						$(MAKE) clean -C $(LIBFT)
+
+fclean					:	clean
+						rm -f $(NAME) checker
+						$(MAKE) fclean -C $(LIBFT)
+
+re						:	fclean all
