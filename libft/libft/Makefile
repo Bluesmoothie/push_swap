@@ -9,9 +9,9 @@ CFLAGS		= 	-Wall -Wextra -Werror -MMD -MP -I $(INCLUDE)
 
 #			COMMON
 
-INCLUDE		=	include
+BUILD_DIR	=	.build/
 SRC_DIR		=	src/
-BUILD_DIR	=	obj/
+INCLUDE		=	include
 
 #			SRC
 
