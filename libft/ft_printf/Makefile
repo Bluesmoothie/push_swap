@@ -1,43 +1,49 @@
 .PHONY		:	all clean fclean re
 
-CC			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra -I
-
 NAME		=	libftprintf.a
 
-INCLUDE		=	include
+#			GCC
+
+CC			=	cc
+CFLAGS		=	-Wall -Werror -Wextra -MMD -MP -I $(INCLUDE)
+
+#			COMMON
+
+BUILD_DIR	=	.build/
 SRC_DIR		=	src/
-OBJ_DIR		=	obj/
+INCLUDE		=	include/
 
-RM			=	rm -f
-LIBC		=	ar rc
-LIBR		= 	ranlib
+#			SRC
 
-SRC_FILES	=	libftprintf \
-				printer_1 \
-				printer_2 \
-				hex \
-				ft_uitoa
+SRC_FILES	=	libftprintf	\
+				printer_1	\
+				printer_2	\
+				hex			\
+				ft_uitoa	\
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
-OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
+OBJ 		= 	$(addprefix $(BUILD_DIR), $(addsuffix .o, $(SRC_FILES)))
+DEPS 		= 	$(addprefix $(BUILD_DIR), $(addsuffix .d, $(SRC_FILES)))
 
-all			:	$(NAME)
+#			RULES
 
-$(NAME)		:	$(OBJ_DIR) $(OBJ) $(INCLUDE)/ft_printf.h $(INCLUDE)/libft.h
-			$(LIBC) $(NAME) $(OBJ)
-			$(LIBR) $(NAME)
+all				:	$(NAME)
 
-$(OBJ_DIR)	:
-			mkdir $(OBJ_DIR)
+$(NAME)			:	$(BUILD_DIR) $(OBJ)
+				ar -rcs $(NAME) $(OBJ)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
-			$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+$(BUILD_DIR)	:
+				mkdir -p $(BUILD_DIR)
 
-clean		:
-			$(RM) -rf $(OBJ_DIR)
+$(BUILD_DIR)%.o	: $(SRC_DIR)%.c
+				$(CC) $(CFLAGS) -c $< -o $@
 
-fclean		:	clean
-			$(RM) -f $(NAME)
+-include $(DEPS)
 
-re			:	fclean all
+clean			:
+				rm -rf $(BUILD_DIR)
+
+fclean			:	clean
+				rm -f $(NAME)
+
+re				:	fclean all
