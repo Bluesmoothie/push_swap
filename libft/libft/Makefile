@@ -1,4 +1,4 @@
-.PHONY		: 	all clean fclean re
+.PHONY		: 	all clean fclean re norme
 
 NAME		=	libft.a
 
@@ -77,6 +77,9 @@ $(BUILD_DIR)%.o	: $(SRC_DIR)%.c
 				$(CC) $(CFLAGS) -c $< -o $@
 
 -include $(DEPS)
+
+norme			:
+				norminette $(SRC) $(INCLUDE)
 
 clean			:
 				rm -rf $(BUILD_DIR)
