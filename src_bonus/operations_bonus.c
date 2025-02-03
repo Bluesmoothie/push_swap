@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:45:10 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/28 13:17:43 by ygille           ###   ########.fr       */
+/*   Updated: 2025/02/03 16:28:03 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,16 @@ void	apply_operations(t_slist *list, char *operations)
 		else if (operations[i] == 'r' && operations[i + 1] == 'r')
 			op_code = decode_reverse_rotate(&operations[i]);
 		if (op_code == -1)
-			error(list, 1);
+			apply_error(operations, list);
 		inst_decoder(op_code, list);
 		i = i + 3;
 		if (op_code > 33)
 			i++;
 	}
+}
+
+void	apply_error(char *operations, t_slist *list)
+{
+	free (operations);
+	error(list, 1);
 }

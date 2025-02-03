@@ -6,7 +6,7 @@
 /*   By: ygille <ygille@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 20:08:55 by ygille            #+#    #+#             */
-/*   Updated: 2025/01/22 15:03:10 by ygille           ###   ########.fr       */
+/*   Updated: 2025/02/03 16:28:31 by ygille           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 //operations_bonus.c
 char	*get_operations(void);
 void	apply_operations(t_slist *list, char *operations);
+void	apply_error(char *operations, t_slist *list);
 
 //operations_decode_bonus.c
 int		decode_swap(char *operations);
