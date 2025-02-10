@@ -6,7 +6,7 @@ NAME			=   push_swap
 
 CC				=	cc
 CFLAGS			=	-Wall -Wextra -Werror -MMD -MP $(INCLUDE)
-INCLUDE 		=	-I include -I $(LIBFT)/includes
+INCLUDE 		=	-I include -I $(LIBFT)/include
 
 #			COMMON
 
